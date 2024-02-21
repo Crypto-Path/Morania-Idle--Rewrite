@@ -1,0 +1,376 @@
+<!--
+    TODO:
+    - = done
+    1.) Finish implementing crafting menu tab
+    2.) Make area switch look nice
+    3.) Player stats
+        A.) Monster Kills
+        B.) - Strength / DMG
+        C.) - Equipped weapon info
+        D.) Fame (another progress bar?)
+        E.) Rotating Player Sprite
+            I.) Armor depending or currently equipped weapon
+    4.) More audio for different things
+        A.) Successful Crafting
+        B.) Failed Crafting
+        C.) -Equipping
+        D.) Unequipping
+        E.) Failed Equipping
+    5.) Area scenery for monster segment
+    6.) Guild
+        A.) Daily quest
+        B.) A unique set of quests based on the day
+        c.) Quest tiers
+    7.) Draggable Menus
+    8.) Panning and Zooming
+        A.) Parallax
+    9.) More tooltips
+        A.) Item Descriptions
+    10.) Guide (tutorial)
+    11.) UI Progression
+    12.) Fix Inventory inconsistency (Item passover instead of lookup)
+    13.) - Crafting table catagories
+    14.) Tooltip Issues
+        A.) - Fix tooltip being in the wrong area
+        B.) Attribute info
+        C.) - Follow cursor better
+    15.) - Fix weird body offset
+    16.) - Implement settings
+-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Morania Idle: Rewrite
+        </title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <script src="modules/functions.js"></script>
+        <script src="modules/Item.js"></script>
+        <script src="modules/DropChance.js"></script>
+        <script src="modules/Monster.js"></script>
+        <script src="modules/Area.js"></script>
+        <script src="modules/Region.js"></script>
+        <script>
+            const backgroundMusic = new Audio("Audio/Background.mp3");
+            const attackAudio = new Audio("Audio/Attack.mp3");
+            const deleteAudio = new Audio("Audio/Delete.wav");
+            const dragAudio = new Audio("Audio/Drag.wav");
+            const hoverAudio = new Audio("Audio/Hover.mp3");
+            const releaseAudio = new Audio("Audio/Release.wav");
+            const chinkAudio = new Audio("Audio/Chink.mp3");
+            const equipAudio = new Audio("Audio/Equip.mp3");
+
+            function MasterVolume(vol) {
+                backgroundMusic.volume = vol;
+                attackAudio.volume = vol;
+                deleteAudio.volume = vol;
+                dragAudio.volume = vol;
+                hoverAudio.volume = vol;
+                releaseAudio.volume = vol;
+                chinkAudio.volume = vol;
+                equipAudio.volume = vol;
+            }
+
+        </script>
+
+        <div id="body">
+            <div>
+                <div class="container">
+                    <p>
+                        Inventory
+                    </p>
+                    <div id="Inventory" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="0" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="1" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="2" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="3" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="4" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="5" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="6" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="7" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="8" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="9" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="10" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="11" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="12" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="13" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="14" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="15" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="16" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="17" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="18" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="19" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="20" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="21" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="22" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="23" draggable="false" class="slotIMG" src="" /></div></div>
+                    </div>
+                    
+                    <div id="tooltip"></div>
+                </div>
+                <div class="container">
+                    <p>
+                        Crafting Menu
+                    </p>
+                    <div id="CraftingMenu">
+                        <div id="CraftingMenuItemsContainer">
+                            <p id="Catagory">
+                                <button onclick="{game.previousCategory();}"><</button>
+                                <a id="CategoryText">
+                                    All
+                                </a>   
+                                <button onclick="{game.nextCategory();}">></button>
+                            </p>
+                            <div class="CraftingList">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+        
+                // Get all elements with the class "item"
+                const slots = document.getElementsByClassName('item');
+                let deslot = null;
+        
+                // Attach the event listener to each element
+                for (let i = 0; i < slots.length; i++) {
+                    slots[i].addEventListener('mousedown', () => {
+                        tooltip.style.display = 'none';
+                        deslot = slots[i].children[0].children[0].id;
+                        if (event.button === 0) {
+                            PlayAudio(hoverAudio)
+                            console.log(slots[i]);
+                        }
+                        if (event.button === 2) {
+                            event.preventDefault();
+                            PlayAudio(deleteAudio)
+                            game.inventory.removeItem(game.inventory.inventory[deslot][0].name);
+                            setToolTipText()
+                        }
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    const dropzone = document.getElementById("dropzone");
+                
+                    // Prevent default behavior for drag events
+                    dropzone.addEventListener("dragenter", function(event) {
+                        event.preventDefault();
+                    });
+                
+                    dropzone.addEventListener("dragover", function(event) {
+                        event.preventDefault();
+                    });
+                
+                    // Handle drop event
+                    dropzone.addEventListener("drop", function(event) {
+                        console.log("Equiping Item: " + game.inventory.inventory[deslot][0].name)
+                        game.equipItem(game.inventory.inventory[deslot][0].name)
+                        event.preventDefault();
+                    });
+                });
+            </script>
+            
+            <script src="modules/toolTips.js"></script>
+            <script src="modules/Inventory.js"></script>
+
+            <div>
+                <div class="container">
+                    <div id="MonsterContainer">
+                        <p id="MonsterName">
+                            Small Green Slime
+                        </p>
+                        <div id="hitBox">
+                            <img id="hitBoxImage">
+                        </div>
+                        <div id="MonsterHealthBar" class="bar background barFlex">
+                            <div id="InnerHealthBarContainer" class="bar">
+                                <div id="MonsterHealthBarInner" class="bar">
+                                </div>
+                                <div id="SecondMonsterHealthBarInner" class="bar">
+                                </div>
+                            </div>
+                            <p id="HealthBarInnerText">
+                                10 / 10
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="barFlex">
+                        <button onclick="{game.previousArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText)}"><</button>
+                        <p id="AreaName">
+                            Green Plains
+                        </p>
+                        <button onclick="{game.nextArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText)}">></button>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            <div>
+                <div class="container">
+                    <p>
+                        Player Stats
+                    </p>
+                    <p id="PlayerStatsText" class="stats">
+                    </p>
+                    <div id="XPBarBackground" class="bar background barFlex">
+                        <div id="XPBar" class="bar">
+                            <div id="XPBar" class="bar">
+                                <div class="diagonal-bars"></div>
+                            </div>
+                        </div>
+                        <p id="XPProgress">
+                            [1] 0 / 10 (0%)
+                        </p>
+                    </div>
+                    <br>
+                    <br>
+                    <span>
+                        <div id="dropzone" onclick="{game.unequipItem()}" class="item"><div><img id="EquippedSlot" draggable="false" src="Images/Slot_Equipment_Sword.png" /></div></div>
+                    </span>
+                </div>
+                <div class="container">
+                    <p>
+                        Settings
+                    </p>
+                    <label for="masterVolume">Master Volume</label><br>
+                    <input id="masterVolume" type="range" min="0" max="100" value="100" onchange="{document.getElementById('masterVolumePercent').innerText = this.value + '%'; MasterVolume(this.value / 100);}"><p id="masterVolumePercent">100%</p>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            let scale = 1;
+            window.addEventListener('wheel', function(event) {
+                if (isChildOfContainerElement(event.target)) {
+                    return;
+                }
+
+                if (event.deltaY < 0) {
+                    scale += 0.05; 
+                } else if (event.deltaY > 0) {
+                    scale -= 0.05;
+                }
+                
+                if (scale > 2)
+                    scale = 2;
+
+                if (scale < 0.5)
+                    scale = 0.5;
+
+                document.getElementById('body').style.transform = `scale(${scale})`;
+              });
+
+              function isChildOfContainerElement(element) {
+                if (!element) {
+                    return false;
+                }
+            
+                let parent = element;
+            
+                while (parent) {
+                    if (parent.classList.contains('container')) {
+                        return true; // Found an ancestor with overflow
+                    }
+                    parent = parent.parentElement;
+                }
+            
+                return false; // No ancestor with overflow found
+            }
+        </script>
+
+        <script src="Game.js"></script>
+        <script>
+            let game = null
+
+            let hitBox = document.getElementById("hitBox");
+            let hitBoxImage = document.getElementById("hitBoxImage");
+            let monsterNameText = document.getElementById("MonsterName");
+            let healthBarText = document.getElementById("HealthBarInnerText");
+            let healthBarInner = document.getElementById("MonsterHealthBarInner");
+            let secondHealthBarInner = document.getElementById("SecondMonsterHealthBarInner");
+
+            let areaName = document.getElementById("AreaName");
+
+            document.addEventListener("DOMContentLoaded", function() {
+                game = new Game();
+                game.inventory = new Inventory(document.querySelectorAll('.slotIMG'));
+                game.updateStats();
+                //game.inventory.addItem(game.Items["Slime-Green"], 10000)
+                // game.inventory.addItem(game.Items["Slime-Yellow"], 10)
+
+                hitBox.addEventListener("click", ()=> {
+                    hit(game);
+                    RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText);
+                    PlayAudio(attackAudio, 220);
+                })
+            });
+
+            function hit(game) {
+                hitHitBox();
+                game.attackMonster()
+            }
+
+            function RenderHPBar (nText, hBar, hBar2, hBarText) {
+                hBar.style.width = 190 * game.currentMonster.hp / game.currentMonster.maxHp + "px";
+                hBar2.style.width = 190 * game.currentMonster.hp / game.currentMonster.maxHp + "px";
+                hBarText.innerText = `${Math.ceil(game.currentMonster.hp)} / ${game.currentMonster.maxHp}`;
+                nText.innerText = game.currentMonster.name;
+
+                if (game.currentMonster.hp <= 0) {
+                    hBar.style.width = 190 * game.currentMonster.hp / game.currentMonster.maxHp + "px";
+                    hBar2.style.width = 190 * game.currentMonster.hp / game.currentMonster.maxHp + "px";
+                    hBarText.innerText = `${Math.ceil(game.currentMonster.hp)} / ${game.currentMonster.maxHp}`;
+                    nText.innerText = game.currentMonster.name;
+                }
+            }
+
+            function hitHitBox() {
+                var hitBox = document.getElementById("hitBoxImage");
+                
+                var randomAngle = Math.floor(Math.random() * 181) - 90;
+                var randomDirection = Math.random() < 0.5 ? -1 : 1;
+                hitBox.style.transform = "rotate(" + randomDirection * randomAngle + "deg)";
+                
+                setTimeout(() => {
+                    hitBox.style.transition = "transform 1s";
+                    hitBox.style.transform = "rotate(0deg)";
+                }, 60)
+
+                setTimeout(() => {
+                    hitBox.style.transition = "";
+                    hitBox.style.transform = "";
+                }, 1200);
+            }
+        </script>
+
+        <script>
+            document.addEventListener("click", function() {
+            
+                function loopBackgroundMusic() {
+                    this.currentTime = 0;
+                    this.play();
+                }
+            
+                backgroundMusic.addEventListener("ended", loopBackgroundMusic);
+            
+                backgroundMusic.play();
+                
+                // Remove the click event listener after it's been triggered once
+                document.removeEventListener("click", arguments.callee);
+            });
+        </script>
+        <div class="diagonal-lines"></div>
+    </body>
+</html>
