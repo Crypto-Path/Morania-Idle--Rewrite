@@ -1,0 +1,44 @@
+#hitBox {
+    width:8rem;
+    height:8rem;
+    background-color: rgb(255, 255, 255);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.66) 0rem 0rem 1rem 1rem inset;
+
+    transition-duration: 100ms;
+}
+
+#hitBox:hover {
+    cursor:pointer;
+}
+
+#hitBox:active {
+    transform: scale(0.98);
+    background-color: rgb(220, 220, 220);
+}
+
+#hitBoxImage {
+    width: 90%; /* Start width */
+    height: 90%; /* Start height */
+    animation: scaleAnimation 3s infinite alternate; /* 5s duration, alternate direction, infinite loop */
+}
+
+@keyframes scaleAnimation {
+    0% { /* Start of the animation */
+        width: 90%;
+        height: 90%;
+    }
+    50% { /* Middle of the animation */
+        width: 100%;
+        height: 100%;
+    }
+    100% { /* End of the animation */
+        width: 90%;
+        height: 90%;
+    }
+}

@@ -1,0 +1,38 @@
+.card {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 1rem;
+    transition-duration: 200ms;
+    padding: 0.5rem;
+}
+
+.card > img {
+    transform: scale(0.85);
+    transform:translateY(10px);
+
+    transition-duration: 200ms;
+}
+
+.card:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card:active {
+    transform: scale(1.1);
+}
+
+
+.card:hover > img {
+    transform: scale(1);
+    transform:translateY(-10px);
+    filter: drop-shadow(0px 20px 4px #000000);
+}
+
+.redText {
+    color: red;
+}
+
+#saveDate, #saveStats {
+    font-size: 20px;
+}

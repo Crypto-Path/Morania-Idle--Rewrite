@@ -1,0 +1,29 @@
+#tooltip {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+
+    width: 12rem;
+    outline: 1px solid white;
+
+    transition-duration: 300ms;
+}
+
+#tooltipTitle {
+    float:left;
+    text-align: left;
+    font-size: 32px;
+}
+
+#tooltipDescription {
+    float:left;
+    text-align: left;
+    font-size: 18px;
+}

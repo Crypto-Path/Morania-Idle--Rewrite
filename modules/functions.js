@@ -25,8 +25,8 @@ function drop(ev) {
         dropTarget = dropTarget.parentNode;
     }
 
+    draggedItem.classList.remove("dragging");
     if (dropTarget) {
-        draggedItem.classList.remove("dragging");
         if (dropTarget != draggedItem) {
             if (ev.clientY < dropTarget.getBoundingClientRect().top + dropTarget.offsetHeight / 2) {
                 dropTarget.parentNode.insertBefore(draggedItem, dropTarget);
@@ -36,6 +36,10 @@ function drop(ev) {
         }
     }
 }
+          
+document.addEventListener("dragend", () => {
+        document.getElementsByClassName('dragging')[0].classList.remove("dragging");
+})
 
 function PlayAudio(audio, timeout, time = 0) {
     
@@ -52,12 +56,30 @@ function PlayAudio(audio, timeout, time = 0) {
     }
 }
 
+function balanceProgresses(progresses) {
+    let totalRatio = 0;
+    let totalProgress = 0;
 
+    for (const progress of progresses) {
+        const ratio = progress[0] / progress[1];
+        totalProgress += ratio * 100;
+        totalRatio += ratio;
+    }
 
-// Function to handle context menu event and prevent default behavior
-function handleContextMenu(event) {
-    event.preventDefault(); // Prevent default right-click context menu
+    const averageProgress = totalProgress / progresses.length;
+    const balancedRatio = Math.min(1, averageProgress / 100);
+
+    const balancedProgress = progresses.map(progress => {
+        const balancedValue = Math.min(progress[1], balancedRatio * progress[1]);
+        return [balancedValue, progress[1]];
+    });
+
+    return balancedProgress;
 }
 
-// Add event listener for context menu event
+
+function handleContextMenu(event) {
+    event.preventDefault();
+}
+
 document.addEventListener("contextmenu", handleContextMenu);

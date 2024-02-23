@@ -69,10 +69,6 @@ class Inventory {
     }
 
     addItem(itemToAdd, count = 1) {
-        if (!(itemToAdd instanceof Item)) {
-            throw new Error('Parameter must be an instance of the Item class');
-        }
-
         for (let i = 0; i < this.inventory.length; i++) {
             const item = this.inventory[i];
             if (item[0].name === itemToAdd.name) {

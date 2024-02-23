@@ -2,16 +2,20 @@
 let items = document.querySelectorAll('.item');
 let deitem = undefined;
 
+
+
 items.forEach(item => {
     item.addEventListener('mouseenter', function(event) {
-        if (!((item.children[0].children[0].src == "") || (item.children[0].children[0].src == "file:///C:/Users/cyphe/Documents/GitHub/ITRM-Rewrite/index.html"))) {
+        if (!((item.children[0].children[0].src == "") || (item.children[0].children[0].src.includes("index")))) {
             const tooltip = document.getElementById('tooltip');
-            tooltip.textContent = item.dataset.tooltip;
+            const tooltipTitle = document.getElementById('tooltipTitle');
+            const tooltipDescription = document.getElementById('tooltipDescription');
+            //tooltip.textContent = item.dataset.tooltip;
             tooltip.style.display = 'block';
             tooltip.style.top = `${event.clientY + 10}px`;
             tooltip.style.left = `${event.clientX + 10}px`;
             deitem = item
-            setToolTipText() 
+            setToolTipText(tooltipTitle, tooltipDescription) 
         }
     });
 
@@ -26,7 +30,10 @@ document.addEventListener("mousemove", (event) => {
     tooltip.style.left = `${event.clientX + 10}px`;
 });
 
-function setToolTipText() {
+function setToolTipText(title, desc) {
+    if (game.inventory.inventory[deitem.children[0].children[0].id] == undefined) {
+        return;
+    }
     const _item = game.inventory.inventory[deitem.children[0].children[0].id][0];
     const _count = game.inventory.inventory[deitem.children[0].children[0].id][1];
 
@@ -49,5 +56,7 @@ function setToolTipText() {
         damageText += "\nXP Multi: +" + attributes.XPM + "%";
     }
     
-    document.getElementById('tooltip').innerText = `${_item.name} (x${_count})\n[${traits}]${damageText}\n\n${_item.description}${(scrapText != "") ? `\n\n[Scrap] (LMB)\n\n${scrapText}` : ""}`
+    title.innerText = `${_item.name} (x${_count})`;
+    
+    desc.innerText = `[${traits}]${damageText}\n\n${_item.description}${(scrapText != "") ? `\n\n[Scrap] (LMB)\n\n${scrapText}` : ""}`
 }

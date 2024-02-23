@@ -1,7 +1,7 @@
 <!--
     TODO:
     - = done
-    1.) Finish implementing crafting menu tab
+    1.) - Finish implementing crafting menu tab
     2.) Make area switch look nice
     3.) Player stats
         A.) Monster Kills
@@ -14,7 +14,7 @@
         A.) Successful Crafting
         B.) Failed Crafting
         C.) -Equipping
-        D.) Unequipping
+        D.) - Unequipping
         E.) Failed Equipping
     5.) Area scenery for monster segment
     6.) Guild
@@ -24,15 +24,17 @@
     7.) Draggable Menus
     8.) Panning and Zooming
         A.) Parallax
+        B.) - Panning
+        C.) - Zooming
     9.) More tooltips
         A.) Item Descriptions
     10.) Guide (tutorial)
     11.) UI Progression
     12.) Fix Inventory inconsistency (Item passover instead of lookup)
     13.) - Crafting table catagories
-    14.) Tooltip Issues
+    14.) - Tooltip Issues
         A.) - Fix tooltip being in the wrong area
-        B.) Attribute info
+        B.) - Attribute info
         C.) - Follow cursor better
     15.) - Fix weird body offset
     16.) - Implement settings
@@ -48,6 +50,15 @@
             Morania Idle: Rewrite
         </title>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="Styles/save.css">
+        <link rel="stylesheet" type="text/css" href="Styles/hitbox.css">
+        <link rel="stylesheet" type="text/css" href="Styles/inventory.css">
+        <link rel="stylesheet" type="text/css" href="Styles/craft.css">
+        <link rel="stylesheet" type="text/css" href="Styles/quests.css">
+        <link rel="stylesheet" type="text/css" href="Styles/bars.css">
+        <link rel="stylesheet" type="text/css" href="Styles/tooltip.css">
+        <link rel="stylesheet" type="text/css" href="Styles/lines.css">
+        <link rel="stylesheet" type="text/css" href="Styles/scrollBar.css">
     </head>
     <body>
         <script src="modules/functions.js"></script>
@@ -56,6 +67,9 @@
         <script src="modules/Monster.js"></script>
         <script src="modules/Area.js"></script>
         <script src="modules/Region.js"></script>
+        <script src="modules/Quest.js"></script>
+        <script src="modules/QuestLine.js"></script>
+        <script src="modules/SaveAndLoad.js"></script>
         <script>
             const backgroundMusic = new Audio("Audio/Background.mp3");
             const attackAudio = new Audio("Audio/Attack.mp3");
@@ -65,6 +79,8 @@
             const releaseAudio = new Audio("Audio/Release.wav");
             const chinkAudio = new Audio("Audio/Chink.mp3");
             const equipAudio = new Audio("Audio/Equip.mp3");
+            const tabAudio = new Audio("Audio/Tab.mp3");
+            const packAudio = new Audio("Audio/Pack.mp3");
 
             function MasterVolume(vol) {
                 backgroundMusic.volume = vol;
@@ -75,11 +91,67 @@
                 releaseAudio.volume = vol;
                 chinkAudio.volume = vol;
                 equipAudio.volume = vol;
+                tabAudio.volume = vol / 4;
             }
 
+            MasterVolume(1)
         </script>
-
-        <div id="body">
+                    
+        <div id="tooltip">
+            <div class="diagonal-lines"></div>
+            <p id="tooltipTitle">
+            </p>
+            <br>
+            <br>
+            <hr>
+            <p id="tooltipDescription">
+            </p>
+        </div>
+        <div id="save" class="container">
+            <a>
+                Load Save
+            </a>
+            <hr>
+            <div class="hoverOutline card" onclick="{file.load(); document.getElementById('body').style.display = 'flex'; document.getElementById('save').style.display='none'}">
+                <p id="saveDate"></p>
+                <script>
+                    const StartDate = new Date()
+                    document.getElementById("saveDate").innerText = StartDate.toLocaleString();
+                </script>
+                <img id="saveCoverImage" src="Images/Monster_Slime_Small_Green.png" style="width: 100%;"/>
+                <p id="saveStats">
+                    Level: [1] 0/10 (0%) 
+                </p>
+            </div>
+            <hr>
+        </div>
+        <div id="body" style="display: none;">
+            <div>
+                <div class="container">
+                    <p>
+                        Guild
+                    </p>
+                    <div id="QuestMenu">
+                        <div class="itemsContainer">
+                            <div id="questList" class="itemsList">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container Locked">
+                    <p>
+                        Shop
+                    </p>
+                    <div class="itemsContainer" style="background-color: rgb(150, 150, 150);">
+                        <div class="itemsList">
+                            <p>
+                                Coming Soon
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div>
                 <div class="container">
                     <p>
@@ -111,8 +183,6 @@
                         <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="22" draggable="false" class="slotIMG" src="" /></div></div>
                         <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="23" draggable="false" class="slotIMG" src="" /></div></div>
                     </div>
-                    
-                    <div id="tooltip"></div>
                 </div>
                 <div class="container">
                     <p>
@@ -121,11 +191,11 @@
                     <div id="CraftingMenu">
                         <div id="CraftingMenuItemsContainer">
                             <p id="Catagory">
-                                <button onclick="{game.previousCategory();}"><</button>
+                                <button onclick="{game.previousCategory(); PlayAudio(tabAudio)}"><</button>
                                 <a id="CategoryText">
                                     All
                                 </a>   
-                                <button onclick="{game.nextCategory();}">></button>
+                                <button onclick="{game.nextCategory(); PlayAudio(tabAudio)}">></button>
                             </p>
                             <div class="CraftingList">
                             </div>
@@ -147,7 +217,6 @@
                         deslot = slots[i].children[0].children[0].id;
                         if (event.button === 0) {
                             PlayAudio(hoverAudio)
-                            console.log(slots[i]);
                         }
                         if (event.button === 2) {
                             event.preventDefault();
@@ -206,11 +275,11 @@
                 </div>
                 <div class="container">
                     <div class="barFlex">
-                        <button onclick="{game.previousArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText)}"><</button>
+                        <button onclick="{game.previousArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText); PlayAudio(tabAudio)}"><</button>
                         <p id="AreaName">
                             Green Plains
                         </p>
-                        <button onclick="{game.nextArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText)}">></button>
+                        <button onclick="{game.nextArea(); RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText); PlayAudio(tabAudio)}">></button>
                     </div>
                 </div>
             </div>
@@ -224,6 +293,10 @@
                     </p>
                     <p id="PlayerStatsText" class="stats">
                     </p>
+                    <span>
+                        <div id="dropzone" onclick="{game.unequipItem()}" class="item"><div><img id="EquippedSlot" draggable="false" src="Images/Slot_Equipment_Sword.png" /></div></div>
+                    </span>
+                    <br>
                     <div id="XPBarBackground" class="bar background barFlex">
                         <div id="XPBar" class="bar">
                             <div id="XPBar" class="bar">
@@ -235,10 +308,6 @@
                         </p>
                     </div>
                     <br>
-                    <br>
-                    <span>
-                        <div id="dropzone" onclick="{game.unequipItem()}" class="item"><div><img id="EquippedSlot" draggable="false" src="Images/Slot_Equipment_Sword.png" /></div></div>
-                    </span>
                 </div>
                 <div class="container">
                     <p>
@@ -246,6 +315,11 @@
                     </p>
                     <label for="masterVolume">Master Volume</label><br>
                     <input id="masterVolume" type="range" min="0" max="100" value="100" onchange="{document.getElementById('masterVolumePercent').innerText = this.value + '%'; MasterVolume(this.value / 100);}"><p id="masterVolumePercent">100%</p>
+                    <input onchange="{autoAttack = this.checked;}" type="checkbox">
+                    <a>Idle Mode</a>
+                    <hr>
+                    <button onclick="{file.save(); file.loaded = true}">Save</button><br>
+                    <button class="redText" onclick="{localStorage['file'] = undefined; file.loaded = false; alert('(Auto save disable, save to re-enable)\n If you accidentally pressed this, don\'t worry, just save after this message and it\'ll be like nothing happened :)')}">Delete Save</button>
                 </div>
             </div>
         </div>
@@ -258,9 +332,9 @@
                 }
 
                 if (event.deltaY < 0) {
-                    scale += 0.05; 
+                    scale += 0.01; 
                 } else if (event.deltaY > 0) {
-                    scale -= 0.05;
+                    scale -= 0.01;
                 }
                 
                 if (scale > 2)
@@ -293,6 +367,7 @@
         <script src="Game.js"></script>
         <script>
             let game = null
+            let file = null;
 
             let hitBox = document.getElementById("hitBox");
             let hitBoxImage = document.getElementById("hitBoxImage");
@@ -303,22 +378,35 @@
 
             let areaName = document.getElementById("AreaName");
 
+            let autoAttack = false;
+
             document.addEventListener("DOMContentLoaded", function() {
                 game = new Game();
                 game.inventory = new Inventory(document.querySelectorAll('.slotIMG'));
                 game.updateStats();
+                file = new SaveAndLoad(game, StartDate);
                 //game.inventory.addItem(game.Items["Slime-Green"], 10000)
                 // game.inventory.addItem(game.Items["Slime-Yellow"], 10)
 
                 hitBox.addEventListener("click", ()=> {
-                    hit(game);
-                    RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText);
-                    PlayAudio(attackAudio, 220);
+                    if (!autoAttack) {
+                        hit(game);
+                    }
                 })
             });
 
-            function hit(game) {
-                hitHitBox();
+            autoAttackLoop = setInterval(() => {
+                if (autoAttack) {
+                    hit(game, false);
+                }
+            }, 1000)
+
+            function hit(game, input = true) {
+                if (input) {
+                    hitHitBox();
+                    PlayAudio(attackAudio, 220);
+                }
+                RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText);
                 game.attackMonster()
             }
 
@@ -371,6 +459,68 @@
                 document.removeEventListener("click", arguments.callee);
             });
         </script>
+        
+        <script>
+            const bodyElement = document.getElementById('body');
+
+            let keysDown = {
+                "ArrowUp" : false,
+                "ArrowDown" : false,
+                "ArrowLeft" : false,
+                "ArrowRight" : false
+            }
+
+            let moveInterval = null;
+            const body = document.getElementById("body");
+            body.style.top = `0px`;
+            body.style.left = `0px`;
+
+            const moveSpeed = 5;
+
+            setInterval(() => {
+                if(keysDown["ArrowUp"])
+                    body.style.top = `${parseInt(body.style.top) + moveSpeed}px`;
+                if(keysDown["ArrowDown"])
+                    body.style.top = `${parseInt(body.style.top) - moveSpeed}px`;
+                if(keysDown["ArrowLeft"])
+                    body.style.left = `${parseInt(body.style.left) + moveSpeed}px`;
+                if(keysDown["ArrowRight"])
+                    body.style.left = `${parseInt(body.style.left) - moveSpeed}px`;
+            }, 15);
+
+            document.addEventListener('keydown', (event) => {
+                keysDown[event.key] = true;
+            });
+
+            document.addEventListener('keyup', (event) => {
+                keysDown[event.key] = false;
+            });
+        </script>
         <div class="diagonal-lines"></div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("saveDate").innerText = file.getSaveCoverData()[0].toLocaleString();
+                document.getElementById("saveStats").innerText = `[${file.getSaveCoverData()[2]}] ${file.getSaveCoverData()[1]} / ${game.getXpReq(file.getSaveCoverData()[2])} (${Math.round(100 * file.getSaveCoverData()[1] / game.getXpReq(file.getSaveCoverData()[2]))}%)`;
+                document.getElementById("saveCoverImage").src = (file.getSaveCoverData()[3] != undefined) ? getImageURL(file.getSaveCoverData()[3].sprite) : getImageURL("Monster_Slime_Small_Green");
+            })
+
+            setInterval(() => {
+                if(file.loaded)
+                    file.save();
+
+                console.log("Auto Save!")
+            }, 1000 * 60 * 5)
+
+            window.addEventListener('beforeunload', function (e) {
+                if(file.loaded) {
+                    e.preventDefault();
+                    file.save();
+                }
+            });
+        </script>
+        <a class="bottom-right">
+            MI: v1.0.1a
+        </a>
     </body>
 </html>

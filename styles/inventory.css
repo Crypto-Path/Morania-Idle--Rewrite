@@ -1,0 +1,86 @@
+#Inventory {
+    width: 12rem;
+    background: #0b0423;
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.item {
+    width: 1.915rem;
+    height: 1.915rem;
+    background-color: rgba(199, 99, 0, 0.5);
+    cursor: pointer;
+    padding: 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item > div {
+    margin: 2px;
+    border-radius: 0.125rem;
+    width: 1.750rem;
+    height: 1.750rem;
+    background-color: #b47e36;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition-duration: 200ms;
+}
+
+.item > div:hover {
+    background-color: #a8742f;
+    margin: 4px;
+    border-radius: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.item > div > img {
+    position: absolute;
+    width: 66%;
+    transition-duration: 200ms;
+}
+
+.item.dragging {
+    opacity: 0.5;
+}
+
+.item:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: -30px; /* Adjust tooltip position */
+    left: 0;
+    z-index: 1; /* Ensure tooltip is above other elements */
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.item:hover > div > img {
+    transition-delay: 100ms;
+    transition-duration: 300ms;
+    width: 80%;
+}
+
+.item:active > div > img {
+    transition-delay: 0ms;
+    transition-duration: 100ms;
+    width: 66%;
+}
+
+.item:hover::before {
+    opacity: 1;
+}

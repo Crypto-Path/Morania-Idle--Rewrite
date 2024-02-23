@@ -1,0 +1,146 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2024-02-21 22:39:03
+count workspace : c:\Users\cyphe\Documents\GitHub\ITRM-Rewrite\Morania-Idle--Rewrite
+total files : 125
+total code lines : 1358
+total comment lines : 62
+total blank lines : 243
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |              2|              0|              0|   0.15|
+   |            .js|            715|             23|            122|     53|
+   |          .html|            315|             39|             46|     23|
+   |           .ini|              4|              0|              0|   0.29|
+   |           .css|            322|              0|             75|     24|
+   -------------------------------------------------------------------------
+.gitattributes, code is 2, comment is 0, blank is 0.
+Audio\Attack.mp3, it is a binary file.
+Audio\Background.mp3, it is a binary file.
+Audio\Chink.mp3, it is a binary file.
+Audio\Delete.wav, it is a binary file.
+Audio\Drag.wav, it is a binary file.
+Audio\Equip.mp3, it is a binary file.
+Audio\Hover.mp3, it is a binary file.
+Audio\Release.wav, it is a binary file.
+Game.js, code is 369, comment is 12, blank is 66.
+Images\BG_1.tif, it is a binary file.
+Images\Blade_Alpha.png, it is a binary file.
+Images\Blade_Bone.png, it is a binary file.
+Images\Blade_DarkGem.png, it is a binary file.
+Images\Blade_Emerald.png, it is a binary file.
+Images\Blade_Grass.png, it is a binary file.
+Images\Blade_Lightning.png, it is a binary file.
+Images\Blade_Magic.png, it is a binary file.
+Images\Blade_Ruby.png, it is a binary file.
+Images\Blade_Silver.png, it is a binary file.
+Images\Blade_Stone.png, it is a binary file.
+Images\Blade_Water.png, it is a binary file.
+Images\Blade_Wooden.png, it is a binary file.
+Images\Button_Left.png, it is a binary file.
+Images\Button_Right.png, it is a binary file.
+Images\Coins_Copper.png, it is a binary file.
+Images\Coins_Gold.png, it is a binary file.
+Images\Coins_Platinum.png, it is a binary file.
+Images\Coins_Silver.png, it is a binary file.
+Images\Creature_Shoubi.png, it is a binary file.
+Images\Default.png, it is a binary file.
+Images\desktop.ini, code is 4, comment is 0, blank is 0.
+Images\Item_Aura.png, it is a binary file.
+Images\Item_Bone.png, it is a binary file.
+Images\Item_Copper.png, it is a binary file.
+Images\Item_Dagger.png, it is a binary file.
+Images\Item_DarkGem.png, it is a binary file.
+Images\Item_Emerald.png, it is a binary file.
+Images\Item_Fur.png, it is a binary file.
+Images\Item_Gem.png, it is a binary file.
+Images\Item_Grass.png, it is a binary file.
+Images\Item_Grass_Boat.png, it is a binary file.
+Images\Item_Handle_Sword.png, it is a binary file.
+Images\Item_Iron.png, it is a binary file.
+Images\Item_Paper.png, it is a binary file.
+Images\Item_Paper_Mapped.png, it is a binary file.
+Images\Item_Paper_Used.png, it is a binary file.
+Images\Item_Pebble.png, it is a binary file.
+Images\Item_Ruby.png, it is a binary file.
+Images\Item_Silver.png, it is a binary file.
+Images\Item_Skull.png, it is a binary file.
+Images\Item_Slime_Blue.png, it is a binary file.
+Images\Item_Slime_Green.png, it is a binary file.
+Images\Item_Slime_Red.png, it is a binary file.
+Images\Item_Slime_Yellow.png, it is a binary file.
+Images\Item_Stick.png, it is a binary file.
+Images\Item_String.png, it is a binary file.
+Images\Monster_Flower_Murderous.png, it is a binary file.
+Images\Monster_Goblin_Guard.png, it is a binary file.
+Images\Monster_Goblin_King.png, it is a binary file.
+Images\Monster_Goblin_Knight.png, it is a binary file.
+Images\Monster_Goblin_Queen.png, it is a binary file.
+Images\Monster_Goblin_RoyalKnight.png, it is a binary file.
+Images\Monster_Goblin_Scout.png, it is a binary file.
+Images\Monster_Goblin_Villager.png, it is a binary file.
+Images\Monster_Goblin_Warrior.png, it is a binary file.
+Images\Monster_Slime_Blue.png, it is a binary file.
+Images\Monster_Slime_Green.png, it is a binary file.
+Images\Monster_Slime_Large_Blue.png, it is a binary file.
+Images\Monster_Slime_Large_Green.png, it is a binary file.
+Images\Monster_Slime_Large_Red.png, it is a binary file.
+Images\Monster_Slime_Large_Yellow.png, it is a binary file.
+Images\Monster_Slime_Massive_Blue.png, it is a binary file.
+Images\Monster_Slime_Massive_Green.png, it is a binary file.
+Images\Monster_Slime_Massive_Red.png, it is a binary file.
+Images\Monster_Slime_Massive_Yellow.png, it is a binary file.
+Images\Monster_Slime_Red.png, it is a binary file.
+Images\Monster_Slime_Small_Blue.png, it is a binary file.
+Images\Monster_Slime_Small_Green.png, it is a binary file.
+Images\Monster_Slime_Small_Red.png, it is a binary file.
+Images\Monster_Slime_Small_Yellow.png, it is a binary file.
+Images\Monster_Slime_Yellow.png, it is a binary file.
+Images\Monster_Wondering_Eye_Purple.png, it is a binary file.
+Images\Monster_Wondering_Eye_Red.png, it is a binary file.
+Images\Object_Chest_Wood.png, it is a binary file.
+Images\Pickaxe_Wooden.png, it is a binary file.
+Images\Ring_Lightning.png, it is a binary file.
+Images\Ring_Magma.png, it is a binary file.
+Images\Ring_Nature.png, it is a binary file.
+Images\Ring_Water.png, it is a binary file.
+Images\Slot_Equipment_Sword.png, it is a binary file.
+Images\Sword_Alpha.png, it is a binary file.
+Images\Sword_Beta.png, it is a binary file.
+Images\Sword_Bone.png, it is a binary file.
+Images\Sword_DarkGem.png, it is a binary file.
+Images\Sword_Delta.png, it is a binary file.
+Images\Sword_Emerald.png, it is a binary file.
+Images\Sword_Epsilon.png, it is a binary file.
+Images\Sword_Gamma.png, it is a binary file.
+Images\Sword_Grass.png, it is a binary file.
+Images\Sword_Lightning.png, it is a binary file.
+Images\Sword_Magic.png, it is a binary file.
+Images\Sword_Ruby.png, it is a binary file.
+Images\Sword_Silver.png, it is a binary file.
+Images\Sword_Slime.png, it is a binary file.
+Images\Sword_Slime_Blue.png, it is a binary file.
+Images\Sword_Slime_Green.png, it is a binary file.
+Images\Sword_Slime_Red.png, it is a binary file.
+Images\Sword_Slime_Yellow.png, it is a binary file.
+Images\Sword_Stone.png, it is a binary file.
+Images\Sword_Water.png, it is a binary file.
+Images\Sword_Wooden.png, it is a binary file.
+Images\Tool_Net.png, it is a binary file.
+index.html, code is 315, comment is 39, blank is 46.
+modules\Area.js, code is 18, comment is 0, blank is 3.
+modules\DropChance.js, code is 7, comment is 0, blank is 0.
+modules\functions.js, code is 65, comment is 8, blank is 20.
+modules\Inventory.js, code is 99, comment is 0, blank is 12.
+modules\Item.js, code is 8, comment is 0, blank is 0.
+modules\Monster.js, code is 25, comment is 0, blank is 3.
+modules\Quest.js, code is 40, comment is 0, blank is 5.
+modules\QuestLine.js, code is 17, comment is 0, blank is 2.
+modules\Region.js, code is 16, comment is 1, blank is 1.
+modules\toolTips.js, code is 51, comment is 2, blank is 10.
+styles.css, code is 322, comment is 0, blank is 75.
+===============================================================================
