@@ -37,7 +37,12 @@ class SaveAndLoad {
 
     load() {
         console.log("File: Retrieving Save Data")
-        if (localStorage['file'].length < 100) {
+        try {
+            if (localStorage['file'].length < 100) {
+                return;
+            }
+        } catch (error) {
+            localStorage['file'] = ""
             return;
         }
         const data = JSON.parse(localStorage['file']);
