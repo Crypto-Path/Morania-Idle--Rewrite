@@ -20,7 +20,8 @@
     6.) Guild
         A.) Daily quest
         B.) A unique set of quests based on the day
-        c.) Quest tiers
+        C.) Quest tiers
+        D.) - General Quests
     7.) Draggable Menus
     8.) Panning and Zooming
         A.) Parallax
@@ -28,7 +29,7 @@
         C.) - Zooming
     9.) More tooltips
         A.) Item Descriptions
-    10.) Guide (tutorial)
+    10.) - Guide (tutorial)
     11.) UI Progression
     12.) Fix Inventory inconsistency (Item passover instead of lookup)
     13.) - Crafting table catagories
@@ -57,6 +58,8 @@
         <link rel="stylesheet" type="text/css" href="styles/quests.css">
         <link rel="stylesheet" type="text/css" href="styles/bars.css">
         <link rel="stylesheet" type="text/css" href="styles/toolTip.css">
+        <link rel="stylesheet" type="text/css" href="styles/notification.css">
+        <link rel="stylesheet" type="text/css" href="styles/changelog.css">
         <link rel="stylesheet" type="text/css" href="styles/lines.css">
         <link rel="stylesheet" type="text/css" href="styles/scrollBar.css">
     </head>
@@ -107,23 +110,79 @@
             <p id="tooltipDescription">
             </p>
         </div>
-        <div id="save" class="container">
-            <a>
-                Load Save
-            </a>
-            <hr>
-            <div class="hoverOutline card" onclick="{file.load(); document.getElementById('body').style.display = 'flex'; document.getElementById('save').style.display='none'}">
-                <p id="saveDate"></p>
-                <script>
-                    const StartDate = new Date()
-                    document.getElementById("saveDate").innerText = StartDate.toLocaleString();
-                </script>
-                <img id="saveCoverImage" src="Images/Monster_Slime_Small_Green.png" style="width: 100%;"/>
-                <p id="saveStats">
-                    Level: [1] 0/10 (0%) 
-                </p>
+        <div class="overlay" id="overlay"></div>
+        <div class="notification-container"></div>
+        <script src="modules/Notification.js"></script>
+        <script>
+            function fadeScreen() {
+                var overlay = document.getElementById('overlay');
+                overlay.style.opacity = '1'; // Fade in the overlay
+                overlay.style.pointerEvents = 'auto'; // Enable clicks
+            }
+            
+            function unfadeScreen() {
+                console.log("ehhhh?")
+                var overlay = document.getElementById('overlay');
+                overlay.style.opacity = '0'; // Fade out the overlay
+                overlay.style.pointerEvents = 'none'; // Disable clicks
+            }
+            
+        </script>
+        <div id="mainMenu">
+            <div id="changeLog" class="container">
+                <a style="font-size: 30px; text-align: center; width: 100%">
+                    Change Log
+                </a>
+                <div id="changeLogList" class = "container">
+                    <div  class = "container changeLogItem">
+                        <a style="font-size: 20px;">
+                            v1.0.2
+                        </a>
+                        <a class="changelogDesc">
+                        What's new?
+                        - This Changelog
+                        - Idle mode feedback
+                        - New calculation for damage
+                        &#160&#160&#160- Roughly √(str² + (1 + wpn-dmg)²)
+                        - Slight weapon re-balance
+                        &#160&#160&#160- Copper Sword 96 -> 100
+                        - Screen transition (menu -> game)
+                        - Notification system
+                        - Fixed health bar extending too far - auto clicker problem >:(
+                        - Item count
+                        - Simple guide/tutorial when starting a new save
+                        </a>
+                    </div>
+                </div>
             </div>
-            <hr>
+            <div id="save" class="container">
+                <a>
+                    Load Save
+                </a>
+                <hr>
+                <div class="hoverOutline card" onclick="{
+                    fadeScreen();
+                    
+                    file.load();
+
+                    setTimeout(() => {
+                        document.getElementById('body').style.display = 'flex';
+                        document.getElementById('mainMenu').style.display='none';
+                        unfadeScreen();
+                    }, 1000 + 200);
+                }">
+                    <p id="saveDate"></p>
+                    <script>
+                        const StartDate = new Date()
+                        document.getElementById("saveDate").innerText = StartDate.toLocaleString();
+                    </script>
+                    <img id="saveCoverImage" src="Images/Monster_Slime_Small_Green.png" style="width: 100%;"/>
+                    <p id="saveStats">
+                        Level: [1] 0/10 (0%) 
+                    </p>
+                </div>
+                <hr>
+            </div>
         </div>
         <div id="body" style="display: none;">
             <div>
@@ -158,30 +217,30 @@
                         Inventory
                     </p>
                     <div id="Inventory" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="0" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="1" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="2" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="3" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="4" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="5" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="6" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="7" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="8" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="9" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="10" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="11" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="12" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="13" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="14" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="15" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="16" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="17" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="18" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="19" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="20" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="21" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="22" draggable="false" class="slotIMG" src="" /></div></div>
-                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="23" draggable="false" class="slotIMG" src="" /></div></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="0" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="1" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="2" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="3" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="4" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="5" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="6" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="7" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="8" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="9" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="10" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="11" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="12" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="13" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="14" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="15" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="16" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="17" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="18" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="19" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="20" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="21" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="22" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
+                        <div class="item" draggable="true" ondragstart="drag(event)"><div><img id="23" draggable="false" class="slotIMG" src="" /></div><a class="itemCount"></a></div>
                     </div>
                 </div>
                 <div class="container">
@@ -385,8 +444,6 @@
                 game.inventory = new Inventory(document.querySelectorAll('.slotIMG'));
                 game.updateStats();
                 file = new SaveAndLoad(game, StartDate);
-                //game.inventory.addItem(game.Items["Slime-Green"], 10000)
-                // game.inventory.addItem(game.Items["Slime-Yellow"], 10)
 
                 hitBox.addEventListener("click", ()=> {
                     if (!autoAttack) {
@@ -403,9 +460,9 @@
 
             function hit(game, input = true) {
                 if (input) {
-                    hitHitBox();
                     PlayAudio(attackAudio, 220);
                 }
+                hitHitBox();
                 RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText);
                 game.attackMonster()
             }
@@ -507,7 +564,7 @@
 
             setInterval(() => {
                 if(file.loaded)
-                    file.save();
+                    file.save(true, true);
 
                 console.log("Auto Save!")
             }, 1000 * 60 * 5)
@@ -520,7 +577,7 @@
             });
         </script>
         <a class="bottom-right">
-            MI: v1.0.1a
+            v1.0.2
         </a>
     </body>
 </html>

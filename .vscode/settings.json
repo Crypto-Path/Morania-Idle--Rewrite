@@ -14,7 +14,8 @@
         "Tanzanite",
         "Underlordium",
         "unequip",
-        "Unequipping"
+        "Unequipping",
+        "unfade"
     ],
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {

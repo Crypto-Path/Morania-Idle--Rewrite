@@ -1,0 +1,23 @@
+.changelogDesc {
+    white-space: pre-line;
+    font-size: 10px;
+}
+
+#changeLog {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 17rem
+}
+
+.changeLogItem {
+}
+
+.changeLogItem:hover {
+    transform: scale(1.15);
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+#changeLogList {
+    overflow-y: scroll;
+}

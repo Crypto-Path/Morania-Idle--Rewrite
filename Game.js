@@ -81,7 +81,7 @@ class Game {
 
             /* Copper Set */
             "Blade-Copper" : new Item("Blade_Copper", "Copper Blade", "A copper infused blade", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Copper" : new Item("Sword_Copper", "Copper Sword", "Infused with copper into itself it's a compelling choice","{\"Traits\":[\"Equipable\"],\"Damage\":96}"),
+            "Sword-Copper" : new Item("Sword_Copper", "Copper Sword", "Infused with copper into itself it's a compelling choice","{\"Traits\":[\"Equipable\"],\"Damage\":100}"),
 
             /* Grass Set */
             "Blade-Grass" : new Item("Blade_Grass", "Grass Blade", "Thousand upon thousands of blades of grass tied up into a Grass Blade", "{\"Traits\":[\"Material\"]}"),
@@ -186,10 +186,10 @@ class Game {
             new Area("Icon_Area_Plains_Green", "Green Plains", [[this.Monsters["Slime-Green-Small"], 1]]),
             new Area("Icon_Area_Plains_Lime", "Lime Plains", [[this.Monsters["Slime-Green-Small"], 0.5], [this.Monsters["Slime-Yellow-Small"], 0.5]]),
             new Area("Icon_Area_Plains_Purple", "Purple Plains", [[this.Monsters["Slime-Blue-Small"], 0.5], [this.Monsters["Slime-Red-Small"], 0.5]]),
-            new Area("Icon_Area_Plains_Small", "Small Plains", [[this.Monsters["Slime-Green-Small"], 0.5], [this.Monsters["Slime-Yellow-Small"], 0.5], [this.Monsters["Slime-Blue-Small"], 0.5], [this.Monsters["Slime-Red-Small"], 0.5]]),
-            new Area("Icon_Area_Plains_Medium", "Medium Plains", [[this.Monsters["Slime-Green"], 0.5], [this.Monsters["Slime-Yellow"], 0.5], [this.Monsters["Slime-Blue"], 0.5], [this.Monsters["Slime-Red"], 0.5]]),
-            new Area("Icon_Area_Plains_Large", "Large Plains", [[this.Monsters["Slime-Green-Large"], 0.5], [this.Monsters["Slime-Yellow-Large"], 0.5], [this.Monsters["Slime-Blue-Large"], 0.5], [this.Monsters["Slime-Red-Large"], 0.5]]),
-            new Area("Icon_Area_Plains_Massive", "Massive Plains", [[this.Monsters["Slime-Green-Massive"], 0.5], [this.Monsters["Slime-Yellow-Massive"], 0.5], [this.Monsters["Slime-Blue-Massive"], 0.5], [this.Monsters["Slime-Red-Massive"], 0.5]]),
+            new Area("Icon_Area_Plains_Small", "Small Plains", [[this.Monsters["Slime-Green-Small"], 0.25], [this.Monsters["Slime-Yellow-Small"], 0.25], [this.Monsters["Slime-Blue-Small"], 0.25], [this.Monsters["Slime-Red-Small"], 0.25]]),
+            new Area("Icon_Area_Plains_Medium", "Medium Plains", [[this.Monsters["Slime-Green"], 0.25], [this.Monsters["Slime-Yellow"], 0.25], [this.Monsters["Slime-Blue"], 0.25], [this.Monsters["Slime-Red"], 0.25]]),
+            new Area("Icon_Area_Plains_Large", "Large Plains", [[this.Monsters["Slime-Green-Large"], 0.25], [this.Monsters["Slime-Yellow-Large"], 0.25], [this.Monsters["Slime-Blue-Large"], 0.25], [this.Monsters["Slime-Red-Large"], 0.25]]),
+            new Area("Icon_Area_Plains_Massive", "Massive Plains", [[this.Monsters["Slime-Green-Massive"], 0.25], [this.Monsters["Slime-Yellow-Massive"], 0.25], [this.Monsters["Slime-Blue-Massive"], 0.25], [this.Monsters["Slime-Red-Massive"], 0.25]]),
             new Area("Icon_Area_Forrest_Entrance", "Forrest Entrance", [[this.Monsters["Plant-Flower-Murderous"], 0.66],[this.Monsters["Goblin-Villager"], 0.20],[this.Monsters["Goblin-Scout"], 0.12]]),
             new Area("Icon_Area_Forrest_Entrance", "Forrest Meadows", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Plant-Flower-Murderous"], 0.33]]),
             new Area("Icon_Area_Forrest_Entrance", "Forrest Path", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Goblin-Warrior"], 0.33]]),
@@ -205,35 +205,23 @@ class Game {
                     new Quest("Basic Hunt I", "A lot of small slimes have been closing in on the town, and threatening the children who play outside", "{\"slain\":[[\"Slime-Green-Small\", 100],[\"Slime-Yellow-Small\", 100],[\"Slime-Red-Small\", 100],[\"Slime-Blue-Small\", 100]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Rock\", 6]]}}"),
                 ],
                 [
-                    new Quest("Basic Hunt II", "A lot of small slimes have been closing in on the town, and threatening the children who play outside", "{\"slain\":[[\"Slime-Green-Small\", 100],[\"Slime-Yellow-Small\", 100],[\"Slime-Red-Small\", 100],[\"Slime-Blue-Small\", 100]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Rock\", 6]]}}"),
+                    new Quest("Basic Hunt II", "Small slimes have started appearing randomly around town, it seems their population is growing exponentially", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Slime-Yellow-Small\", 1000],[\"Slime-Red-Small\", 1000],[\"Slime-Blue-Small\", 1000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
                 ]
             ),
             new QuestLine("Sword Master", [
                     new Quest("Sword Master I", "I am interested in the art of swords, but I need a weapon, preferably something simple to get started", "{\"items\":[[\"Stick\", 1]],\"reward\":{\"xp\" : 500}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master II", "After learning the basics of sword play with a stick, I believe it's my time to move to a real weapon", "{\"items\":[[\"Sword-Wooden\", 1]],\"reward\":{\"xp\" : 1000}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master III", "Now that I have some real experience, I want to boost my experience even further and faster", "{\"items\":[[\"Sword-Bone\", 1]],\"reward\":{\"xp\" : 2000}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master IV", "With enough experience I realize I need a sturdy weapon I can trust on, a weapon that won't falter so easy", "{\"items\":[[\"Sword-Stone\", 1]],\"reward\":{\"xp\" : 4000}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master V", "My sword now struggles to keep up with me and the strains of battle I put it threw. I must advance", "{\"items\":[[\"Sword-Copper\", 1]],\"reward\":{\"xp\" : 8000}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master VI", "I seek the sword or iron to elevate my skills to the next level", "{\"items\":[[\"Sword-Iron\", 1]],\"reward\":{\"xp\" : 16000}}"),
-                ]
-            ),
-            new QuestLine("Sword Master", [
-                    new Quest("Sword Master VII", "The vampires are coming, I must surpass my weaknesses and destroy them all", "{\"items\":[[\"Sword-Silver\", 1]],\"reward\":{\"xp\" : 32000}}"),
+                
+                    new Quest("Sword Master II", "After learning the basics of sword play with a stick, I believe it's my time to move to a real weapon", "{\"items\":[[\"Wooden Sword\", 1]],\"reward\":{\"xp\" : 1000}}"),
+                
+                    new Quest("Sword Master III", "Now that I have some real experience, I want to boost my experience even further and faster", "{\"items\":[[\"Bone Sword\", 1]],\"reward\":{\"xp\" : 2000}}"),
+                
+                    new Quest("Sword Master IV", "With enough experience I realize I need a sturdy weapon I can trust on, a weapon that won't falter so easy", "{\"items\":[[\"Stone Sword\", 1]],\"reward\":{\"xp\" : 4000}}"),
+            
+                    new Quest("Sword Master V", "My sword now struggles to keep up with me and the strains of battle I put it threw. I must advance", "{\"items\":[[\"Copper Sword\", 1]],\"reward\":{\"xp\" : 8000}}"),
+        
+                    new Quest("Sword Master VI", "I seek the sword or iron to elevate my skills to the next level", "{\"items\":[[\"Iron Sword\", 1]],\"reward\":{\"xp\" : 16000}}"),
+          
+                    new Quest("Sword Master VII", "The vampires are coming, I must surpass my weaknesses and destroy them all", "{\"items\":[[\"Silver Sword\", 1]],\"reward\":{\"xp\" : 32000}}"),
                 ]
             ),
         ]
@@ -455,38 +443,48 @@ class Game {
 
     createQuest() {
         this.Quests.forEach(questLine => {
-            const list = document.getElementById("questList");
-            const container = document.createElement("div");
-            container.classList.add("Quest");
-    
-            const title = document.createElement("p");
-            title.innerHTML = questLine.quests[questLine.currentQuest].title;
-            title.classList.add("questTitle");
-    
-            const desc = document.createElement("a");
-            desc.innerHTML = questLine.quests[questLine.currentQuest].description;
-            desc.classList.add("questText");
-    
-            console.log(questLine.quests[questLine.currentQuest].data)
-            let formattedString = this.formatQuestData(questLine.quests[questLine.currentQuest].data)
+            if (!questLine.quests[questLine.currentQuest].isComplete) {
+                const list = document.getElementById("questList");
+                const container = document.createElement("div");
+                container.classList.add("Quest");
+        
+                const title = document.createElement("p");
+                title.innerHTML = questLine.quests[questLine.currentQuest].title;
+                title.classList.add("questTitle");
+        
+                const desc = document.createElement("a");
+                desc.innerHTML = questLine.quests[questLine.currentQuest].description;
+                desc.classList.add("questText");
+        
+                let formattedString = this.formatQuestData(questLine.quests[questLine.currentQuest].data)
 
-            const reqs = document.createElement("a");
-            reqs.innerText = formattedString;
-            reqs.classList.add("questText");
+                const reqs = document.createElement("a");
+                reqs.innerText = formattedString;
+                reqs.classList.add("questText");
 
-            container.onclick = () => {
-                if (questLine.completeQuest(this) != false) {
-                    console.log("Quest Complete")
-                    container.remove();
+                container.onclick = () => {
+                    if (questLine.completeQuest(this) != false) {
+                        console.log("Quest Complete")
+                        container.remove();
+                        this.resetQuestMenu()
+                    }
                 }
+
+                container.appendChild(title);
+                container.appendChild(desc);
+                container.appendChild(reqs);
+
+                list.appendChild(container)
             }
-
-            container.appendChild(title);
-            container.appendChild(desc);
-            container.appendChild(reqs);
-
-            list.appendChild(container)
         });
+    }
+
+    resetQuestMenu() {
+        for (let i = 0; i < document.getElementById("questList").children.length; i++) {
+            const child = document.getElementById("questList").children[0];
+            child.remove()
+        }
+        this.createQuest();
     }
 
     formatQuestData(data) {
@@ -541,7 +539,7 @@ class Game {
         if (this.playerXP >= req) {
             this.playerXP -= req;
             this.playerLevel++;
-            console.log("player levelup!!")
+            createNotification("You've leveled up!")
 
             const p = 100 * this.playerXP / this.getXpReq();
             document.getElementById("XPBar").style.width = 100 * this.playerXP / this.getXpReq() + "%";
@@ -555,7 +553,7 @@ class Game {
         const attributes = (this.inventory.equipped != undefined) ? JSON.parse(this.inventory.equipped.attributes) :{"Traits":["Material", "Equipable"],"Damage":0,"DCM":0} ;
         const weaponDMG =  attributes["Damage"];
         const playerDMG = Math.max(1 * Math.sqrt(this.playerLevel / 2), 1) + this.playerLevel / 10;
-        this.strength = Math.sqrt(2 * playerDMG * playerDMG * ((this.inventory.equipped != undefined) ? 1 + weaponDMG : 1));
+        this.strength = Math.sqrt(Math.pow(playerDMG, 2) + Math.pow(((this.inventory.equipped != undefined) ? 1 + weaponDMG : 1), 2));
         this.dcm = 1;
         this.dcm += (attributes["DCM"] == undefined) ? 1 : attributes["DCM"] / 100;
 

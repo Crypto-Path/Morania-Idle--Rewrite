@@ -84,3 +84,10 @@
 .item:hover::before {
     opacity: 1;
 }
+
+.itemCount {
+    font-size: 10px;
+    z-index: 1;
+    transition-duration: 200ms;
+    transform: translate(15px, 15px);
+}

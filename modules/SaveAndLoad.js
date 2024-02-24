@@ -13,9 +13,14 @@ class SaveAndLoad {
         return [this.date, this.inventory, this.equipped, this.monsterStats, this.playerStats];
     }
 
-    save(ls = true) {
+    save(ls = true, auto = false) {
         if (ls) {
             localStorage['file'] = JSON.stringify(this.reeval());
+            if (auto) {
+                createNotification("Game auto saved!");
+                return;
+            }
+            createNotification("Successfully saved!")
             return;
         }
         // const saveFileText = JSON.stringify(this.reeval())
@@ -37,12 +42,26 @@ class SaveAndLoad {
 
     load() {
         console.log("File: Retrieving Save Data")
+        let newSave = false;
         try {
             if (localStorage['file'].length < 100) {
-                return;
+                newSave = true;
             }
         } catch (error) {
             localStorage['file'] = ""
+            newSave = true;
+        }
+        if (newSave) {
+            let i = 5000
+            setTimeout(() => {
+                createNotification("Click the slime to begin");
+            }, i + 1000)
+            setTimeout(() => {
+                createNotification("Once you have enough green slime, craft a stick. It can be your first weapon");
+            }, i * 2)
+            setTimeout(() => {
+                createNotification("Use arrow keys and scroll to pan and zoom");
+            }, i * 3)
             return;
         }
         const data = JSON.parse(localStorage['file']);
@@ -75,7 +94,10 @@ class SaveAndLoad {
 
         this.loaded = true;
         console.log("File: Successfully Load Save File")
-        return data
+        setTimeout(() => {
+            createNotification("Game successfully loaded!")
+        }, 1300);
+        return data;
     }
 
     getSaveCoverData() {

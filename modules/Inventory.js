@@ -9,6 +9,7 @@ class Inventory {
     drawItems() {
         this.slots.forEach(slot => {
             if (this.inventory[slot.id] != undefined) {
+                slot.parentElement.nextSibling.innerText = this.inventory[slot.id][1];
                 const imageURL = getImageURL(this.inventory[slot.id][0].sprite);
                 slot.setAttribute('src', imageURL);
             } else {
