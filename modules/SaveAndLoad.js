@@ -99,15 +99,16 @@ class SaveAndLoad {
                 console.log("File: Redrawing Equipped Weapon")
             }
 
-            
-            this.game.Quests.forEach((questLine) => {
-                questLine.quests.forEach((quest) => {
-                    if (data[5].includes(quest.title)) {
-                        quest.isComplete = true
-                        questLine.currentQuest++;
-                    }
+            if (data[5]) {
+                this.game.Quests.forEach((questLine) => {
+                    questLine.quests.forEach((quest) => {
+                        if (data[5].includes(quest.title)) {
+                            quest.isComplete = true
+                            questLine.currentQuest++;
+                        }
+                    });
                 });
-            });
+            }
             this.game.resetQuestMenu()
             
             this.game.gainXP(0);
