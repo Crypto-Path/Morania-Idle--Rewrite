@@ -100,6 +100,7 @@ class SaveAndLoad {
             }
 
             if (data[5]) {
+                console.log(data[5])
                 this.game.Quests.forEach((questLine) => {
                     questLine.quests.forEach((quest) => {
                         if (data[5].includes(quest.title)) {
