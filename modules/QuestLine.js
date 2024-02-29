@@ -8,12 +8,11 @@ class QuestLine {
     }
 
     completeQuest(game) {
-        for (let i = 0; i < this.quests.length; i++) {
-            const quest = this.quests[i];
-            if (quest.isCompleted) {
-                continue;
-            }
-            return quest.check(game) ? 100 + this.currentQuest++ : false;            
+        const quest = this.quests[this.currentQuest];
+        if (quest.isCompleted) {
+            return undefined;
         }
+        console.log(quest.isCompleted)
+        return quest.check(game) ? 1 + this.currentQuest++ : false;        
     }
 }

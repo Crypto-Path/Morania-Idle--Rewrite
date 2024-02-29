@@ -6,8 +6,44 @@
     overflow: hidden;
 }
 
+.bar-small {
+    height: 1rem;
+    border-radius: 0.5rem;
+    width: 100px;
+    float: left;
+    overflow: hidden;
+}
+
+.bar-small-up {
+    height: 100px;
+    border-radius: 0.5rem;
+    width: 1rem;
+    float: left;
+    overflow: hidden;
+}
+
+.bar-tiny {
+    height: 1rem;
+    border-radius: 0.5rem;
+    width: 50px;
+    float: left;
+    overflow: hidden;
+}
+
+.bar-tiny-up {
+    height: 50px;
+    border-radius: 0.5rem;
+    width: 1rem;
+    float: left;
+    overflow: hidden;
+}
+
 .background {
-    background-color: rgba(255, 255, 255, 0.752);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.orange {
+    background-color: rgba(255, 127, 0, 0.75);
 }
 
 .barFlex {

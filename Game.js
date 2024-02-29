@@ -6,24 +6,29 @@ class Game {
 
         this.Items = {
             /* General Materials */
-            "Grass" : new Item("Item_Grass", "Grass", "A blade of grass, not to mistaken with a Grass Blade", "{\"Traits\":[\"Material\"]}"),
-            "Stick" : new Item("Item_Stick", "Stick", "A mighty weapon of mass destru... Wrong description. This my fellow, dear, is just a a stick", "{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":1}"),
-            "Bone" : new Item("Item_Bone", "Bone", "The only stable thing you'll find in an undead being... sometimes", "{\"Traits\":[\"Material\"]}"),
-            "Rock" : new Item("Item_Pebble", "Rock", "Rocking rock rock, Rock", "{\"Traits\":[\"Material\"]}"),
-            "Aura" : new Item("Item_Aura", "Aura", "Frick an actual fantasy thing, gotta be serious about this description", "{\"Traits\":[\"Material\"]}"),
-            "Skull" : new Item("Item_Skull", "Skull", "Obtained from... how did you get this?", "{\"Traits\":[\"Material\"]}"),
-            "String" : new Item("Item_String", "String", "Stroinky stroinky string", "{\"Traits\":[\"Material\"]}"),
-            "Paper" : new Item("Item_Paper", "Paper", "Unset", "{\"Traits\":[\"Material\"]}"),
-            "Paper-Used" : new Item("Item_Paper_Used", "Used Paper", "Unset", "{\"Traits\":[\"Material\"]}"),
-            "Paper-Mapped" : new Item("Item_Paper_Mapped", "Map", "Unset", "{\"Traits\":[\"Consumable\"]}"),
-            "Handle-Wooden" : new Item("Item_Handle_Sword", "Sword Handle", "Handler of many blades. Can you handle the handle?", "{\"Traits\":[\"Material\"]}"),
+            "Grass" : new Item("Item_Grass", "Grass", "A common blade of grass, its verdant hue a testament to nature's simplicity.", "{\"Traits\":[\"Material\"]}"),
+            "Stick" : new Item("Item_Stick", "Stick", "A simple stick, rough and sturdy, perhaps a makeshift tool or a weapon in dire times.", "{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":1}"),
+            "Bone" : new Item("Item_Bone", "Bone", "A bone, stripped of flesh, lies weathered and bare, a common sight in the wilds.", "{\"Traits\":[\"Material\"]}"),
+            "Rock" : new Item("Item_Pebble", "Rock", "A plain rock, unassuming and solid, blending into the landscape without a whisper of grandeur.", "{\"Traits\":[\"Material\"]}"),
+            "Aura" : new Item("Item_Aura", "Aura", "An intangible presence, barely perceptible yet undeniable, hinting at hidden mysteries and unseen forces.", "{\"Traits\":[\"Material\"]}"),
+            "Skull" : new Item("Item_Skull", "Skull", "A skull, a bony relic of the past, devoid of life and expression.", "{\"Traits\":[\"Material\"]}"),
+            "String" : new Item("Item_String", "String", "A length of string, simple yet versatile, ready to be woven into solutions or unravel into chaos.", "{\"Traits\":[\"Material\"]}"),
+            "Paper" : new Item("Item_Paper", "Paper", "Paper, a thin and versatile material, ready to be inscribed with thoughts or crumpled into oblivion.", "{\"Traits\":[\"Material\"]}"),
+            "Paper-Used" : new Item("Item_Paper_Used", "Used paper, bearing faint traces of its past purpose, now marked by the passage of time and human touch.", "Unset", "{\"Traits\":[\"Material\"]}"),
+            "Paper-Mapped" : new Item("Item_Paper_Mapped", "Map", "A weathered paper map, its creases and faded ink telling tales of past journeys and uncharted territories.", "{\"Traits\":[\"Consumable\"]}"),
+            "Handle-Wooden" : new Item("Item_Handle_Sword", "Sword Handle", "A sturdy sword handle, crafted with care and designed for firm grip, poised to harness the might of a blade in battle.", "{\"Traits\":[\"Material\"]}"),
 
             /* Metals */
-            "Copper" : new Item("Item_Copper", "Copper", "A simple material, in this world at least", "{\"Traits\":[\"Material\"]}"),
-            "Iron" : new Item("Item_Iron", "Iron", "Yea! The average game's first quick pick for a metal material", "{\"Traits\":[\"Material\"]}"),
-            "Silver" : new Item("Item_Silver", "Silver", "Vampires loveeeee this stuff, so much so, they just die", "{\"Traits\":[\"Material\"]}"),
-            "Jade" : new Item("Item_Jade", "Jade", "I'm seeing a pattern here, Copper, Iron, Jade, hah what's next Gold. Then the Lord Realm, pfft ha", "{\"Traits\":[\"Material\"]}"),
-            "Gold" : new Item("Item_Gold", "Gold", "Butter: rewrite - harder, better, faster", "{\"Traits\":[\"Material\"]}"),
+            "Ore-Copper" : new Item("Item_Copper_Ore", "Copper Ore", "A chunk of copper ore, rough and unrefined, harboring the potential for transformation into valuable metal through skilled craftsmanship.", "{\"Traits\":[\"Material\", \"Smeltable\"]}"),
+            "Copper" : new Item("Item_Copper", "Copper", "A gleaming piece of copper, reflecting light with a warm hue, a prized material for crafting and trade.", "{\"Traits\":[\"Material\", \"Smeltable\"]}"),
+            "Ore-Iron" : new Item("Item_Iron", "Raw Iron", "A raw piece of iron ore, rugged and unyielding, awaiting the forge's embrace to reveal its true strength.", "{\"Traits\":[\"Material\", \"Smeltable\"]}"),
+            "Iron" : new Item("Item_Iron_Refined", "Iron", "A solid block of iron, sturdy and dependable, a cornerstone of craftsmanship and fortitude.", "{\"Traits\":[\"Material\"]}"),
+            "Ore-Silver" : new Item("Item_Silver_Ore", "Raw Silver", "A vein of silver ore, glinting faintly in the dim light, promising wealth and refinement to those who can extract its precious metal.", "{\"Traits\":[\"Material\", \"Smeltable\"]}"),
+            "Silver" : new Item("Item_Silver", "Silver", "A polished silver ingot, shimmering with a cool elegance, coveted for its beauty and utility in crafting.", "{\"Traits\":[\"Material\",\"Smeltable\"]}"),
+            "Echo-Stone" : new Item("Item_EchoStone", "Echo Stone", "The Echo Stone, a subtle yet potent catalyst for enchantment and enhancement, serves as the cornerstone of crafting gemstones. With its latent energy, it holds the promise of unlocking the hidden potential within, ready to infuse weapons and artifacts with newfound abilities.", "{\"Traits\":[\"Material\"]}"),
+            "Jade" : new Item("Item_Jade", "Jade", "Revered for its exquisite beauty and mystical properties, embodies the harmony of nature and the resilience of earth, offering craftsmen and enchanters a rare and versatile material for their creations.", "{\"Traits\":[\"Material\",\"Smeltable\"]}"),
+            "Ore-Gold" : new Item("Item_Gold_Ore", "Raw Gold", "A prized mineral hidden within the earth's depths, promises riches and opportunity to those with the skill and determination to extract its precious bounty.", "{\"Traits\":[\"Material\"]}"),
+            "Gold" : new Item("Item_Gold", "Gold", "The precious metal coveted for its lustrous beauty and inherent value, symbolizes wealth, prestige, and power in the realm of crafting and commerce.", "{\"Traits\":[\"Material\"]}"),
             "Platinum" : new Item("Item_Platinum", "Platinum", "Unset", "{\"Traits\":[\"Material\"]}"),
             "Onyx" : new Item("Item_Onyx", "Onyx", "Unset", "{\"Traits\":[\"Material\"]}"),
             "Agate" : new Item("Item_Agate", "Agate", "Unset", "{\"Traits\":[\"Material\"]}"),
@@ -53,55 +58,55 @@ class Game {
             "Moranium" : new Item("Item_Moranium", "Moranium", "Unset", "{\"Traits\":[\"Material\"]}"),
 
             /* Slime Set */
-            "Slime-Green" : new Item("Item_Slime_Green", "Green Slime", "A calming green slimy substance", "{\"Traits\":[\"Material\"]}"),
-            "Slime-Yellow" : new Item("Item_Slime_Yellow", "Yellow Slime", "A electrifying yellow slimy substance", "{\"Traits\":[\"Material\"]}"),
-            "Slime-Blue" : new Item("Item_Slime_Blue", "Blue Slime", "A wet blue slimy substance", "{\"Traits\":[\"Material\"]}"),
-            "Slime-Red" : new Item("Item_Slime_Red", "Red Slime", "A hot red slimy substance", "{\"Traits\":[\"Material\"]}"),
-            "Slime-Sword-Green" : new Item("Sword_Slime_Green", "Green Slime Sword","A manifestation of nature slime into a sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":15,\"DCM\":10}"),
-            "Slime-Sword-Yellow" : new Item("Sword_Slime_Yellow", "Yellow Slime Sword","A manifestation of energy slime into a sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":18,\"DCM\":10}"),
-            "Slime-Sword-Blue" : new Item("Sword_Slime_Blue", "Blue Slime Sword","A manifestation of water slime into a sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":21,\"DCM\":10}"),
-            "Slime-Sword-Red" : new Item("Sword_Slime_Red", "Red Slime Sword","A manifestation of magma slime into a sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":24,\"DCM\":10}"),
-            "Slime-Sword" : new Item("Sword_Slime", "Slime Sword","A manifestation of pure slime into an sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":28,\"DCM\":20}"),
-            "Slime-Sword-2" : new Item("Sword_Slime", "Slime Sword II","A concentrated manifestation of pure slime into an sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":32,\"DCM\":25}"),
-            "Slime-Sword-3" : new Item("Sword_Slime", "Slime Sword III","A superior concentrated manifestation of pure slime into an sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":64,\"DCM\":33}"),
-            "Slime-Sword-4" : new Item("Sword_Slime", "Slime Sword IV","A mastery of superior concentrated manifestation of pure slime into an sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":128,\"DCM\":50}"),
-            "Slime-Sword-5" : new Item("Sword_Slime", "True Slime Sword","The true legendary embodiment of a slime sword","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":256,\"DCM\":100}"),
+            "Slime-Green" : new Item("Item_Slime_Green", "Green Slime", "A viscous green slime, pulsating with vitality, embodying the untamed essence of nature's primal forces", "{\"Traits\":[\"Material\"]}"),
+            "Slime-Yellow" : new Item("Item_Slime_Yellow", "Yellow Slime", "A pulsating yellow slime, crackling with electric energy, a manifestation of raw power amidst the natural world.", "{\"Traits\":[\"Material\"]}"),
+            "Slime-Blue" : new Item("Item_Slime_Blue", "Blue Slime", "A flowing blue slime, undulating with the essence of water, embodying fluidity and adaptability in its aqueous form.", "{\"Traits\":[\"Material\"]}"),
+            "Slime-Red" : new Item("Item_Slime_Red", "Red Slime", "A seething red slime, emanating heat and fury, embodying the fiery essence of molten magma within its viscous form.", "{\"Traits\":[\"Material\", \"Fuel\"]}"),
+            "Slime-Sword-Green" : new Item("Sword_Slime_Green", "Green Slime Sword","A sword crafted from the essence of green slime, its blade pulsating with nature's vitality, capable of delivering potent strikes infused with the untamed energy of the wilderness.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":15,\"DCM\":10}"),
+            "Slime-Sword-Yellow" : new Item("Sword_Slime_Yellow", "Yellow Slime Sword","A sword forged from the electrifying essence of yellow slime, crackling with energy and capable of delivering shocking strikes that surge with raw power.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":18,\"DCM\":10}"),
+            "Slime-Sword-Blue" : new Item("Sword_Slime_Blue", "Blue Slime Sword","A sword forged from the essence of blue slime, its blade flowing like water and imbued with the fluidity of the oceans, offering swift and agile strikes in combat.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":21,\"DCM\":10}"),
+            "Slime-Sword-Red" : new Item("Sword_Slime_Red", "Red Slime Sword","A sword forged from the fiery essence of red slime, its blade ablaze with the heat of molten magma, capable of delivering devastating strikes that scorch and sear through the fiercest of adversaries.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":24,\"DCM\":10}"),
+            "Slime-Sword" : new Item("Sword_Slime", "Slime Sword","The Slime Sword, a versatile weapon crafted from the essence of various slimes, its blade embodying the elemental powers of nature, electricity, water, and fire, offering wielders a range of formidable abilities in battle.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":28,\"DCM\":20}"),
+            "Slime-Sword-2" : new Item("Sword_Slime", "Slime Sword II","An upgraded version of its predecessor, honed with refined craftsmanship and imbued with even greater elemental prowess, promising wielders enhanced combat capabilities against formidable foes.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":32,\"DCM\":25}"),
+            "Slime-Sword-3" : new Item("Sword_Slime", "Slime Sword III","A masterfully crafted blade forged from the essence of advanced slimes, its gleaming edge pulsating with heightened elemental power, offering seasoned adventurers unparalleled strength and precision in battle.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":64,\"DCM\":75}"),
+            "Slime-Sword-4" : new Item("Sword_Slime", "Slime Sword IV","The pinnacle of slime weaponry, meticulously crafted from rare and potent slime essences, its blade infused with unparalleled elemental mastery, capable of unleashing devastating attacks that defy the limits of conventional weaponry.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":128,\"DCM\":225}"),
+            "Slime-Sword-5" : new Item("Sword_Slime", "True Slime Sword","The True Slime Sword, a legendary artifact forged through ancient rites and infused with the purest essence of the primordial slime, its humble appearance belies its formidable power, granting its wielder mastery over the harmonious balance of nature's elements.","{\"Traits\":[\"Material\", \"Equipable\"],\"Damage\":256,\"DCM\":500}"),
 
             /* Wood Set */
-            "Blade-Wooden" : new Item("Blade_Wooden", "Wooden Blade", "The most basic of blades", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Wooden" : new Item("Sword_Wooden", "Wooden Sword","The most basic of weapons","{\"Traits\":[\"Equipable\"],\"Damage\":5}"),
+            "Blade-Wooden" : new Item("Blade_Wooden", "Wooden Blade", "A simple wooden blade, carved with care and designed for basic combat, offering reliability and versatility to adventurers exploring the wilds.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Wooden" : new Item("Sword_Wooden", "Wooden Sword","A wooden sword, crafted with precision and simplicity, providing novice adventurers with a reliable tool for basic combat and training in the art of swordsmanship.","{\"Traits\":[\"Equipable\"],\"Damage\":5}"),
 
             /* Bone Set */
-            "Blade-Bone" : new Item("Blade_Bone", "Bone Blade", "Undead beings warped down into something you could call a blade", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Bone" : new Item("Sword_Bone", "Bone Sword", "A sword of writhing undead matter splotched onto a blade of bones","{\"Traits\":[\"Equipable\"],\"Damage\":12,\"XPM\":25}"),
+            "Blade-Bone" : new Item("Blade_Bone", "Bone Blade", "A blade crafted from bone, its jagged edges honed to a keen edge, offering a primitive yet effective weapon for those who dare to wield it.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Bone" : new Item("Sword_Bone", "Bone Sword", "A sword fashioned from bone, its primitive yet sturdy design reflecting the resourcefulness of its creator, offering a formidable weapon with a haunting aesthetic.","{\"Traits\":[\"Equipable\"],\"Damage\":12,\"XPM\":25}"),
 
             /* Stone Set */
-            "Blade-Stone" : new Item("Blade_Stone", "Stone Blade", "A simple blade comprised of stone", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Stone" : new Item("Sword_Stone", "Stone Sword", "A simple yet wieldy sword made up of stones","{\"Traits\":[\"Equipable\"],\"Damage\":50}"),
+            "Blade-Stone" : new Item("Blade_Stone", "Stone Blade", "A blade hewn from solid stone, its rough edges honed to a crude yet effective edge, embodying the primal strength of the earth and offering a rugged weapon for survival in the wilderness.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Stone" : new Item("Sword_Stone", "Stone Sword", "A sword crafted from durable stone, its rugged appearance belying its strength and reliability as a formidable weapon, suited for adventurers braving the untamed wilds.","{\"Traits\":[\"Equipable\"],\"Damage\":50}"),
 
             /* Copper Set */
-            "Blade-Copper" : new Item("Blade_Copper", "Copper Blade", "A copper infused blade", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Copper" : new Item("Sword_Copper", "Copper Sword", "Infused with copper into itself it's a compelling choice","{\"Traits\":[\"Equipable\"],\"Damage\":100}"),
+            "Blade-Copper" : new Item("Blade_Copper", "Copper Blade", "A blade forged from sturdy copper, its gleaming surface reflecting craftsmanship and utility, offering a reliable weapon with a hint of elegance to adventurers seeking both strength and style.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Copper" : new Item("Sword_Copper", "Copper Sword", "A sword expertly forged from resilient copper, its lustrous hue hinting at both its durability and refined craftsmanship, providing a reliable weapon for adventurers venturing into the fray.","{\"Traits\":[\"Equipable\"],\"Damage\":100}"),
 
             /* Grass Set */
-            "Blade-Grass" : new Item("Blade_Grass", "Grass Blade", "Thousand upon thousands of blades of grass tied up into a Grass Blade", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Grass" : new Item("Sword_Grass", "Grass Sword", "A thousand needs would pierce, but 25000 grass blades will cut","{\"Traits\":[\"Equipable\"],\"Damage\":128}"),
+            "Blade-Grass" : new Item("Blade_Grass", "Grass Blade", "A blade crafted from toughened grass fibers, its verdant sheen concealing its surprising strength, offering a weapon both lightweight and unexpectedly resilient, ideal for agile warriors attuned to nature's secrets.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Grass" : new Item("Sword_Grass", "Grass Sword", "A sword woven from resilient grass fibers, its flexible yet durable construction harnessing the vitality of nature, providing a unique and versatile weapon for those who favor agility and resourcefulness in combat.","{\"Traits\":[\"Equipable\"],\"Damage\":128}"),
 
             /* Copper Set */
-            "Blade-Iron" : new Item("Blade_Iron", "Iron Blade", "Iron blade forged of.. iron", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Iron" : new Item("Sword_Iron", "Iron Sword", "The average adventurers trusty sword, is the base for all advancement after all","{\"Traits\":[\"Equipable\"],\"Damage\":192}"),
+            "Blade-Iron" : new Item("Blade_Iron", "Iron Blade", "An imposing blade forged from solid iron, its weight and strength unmatched by lesser materials, serving as a formidable weapon capable of cleaving through even the toughest adversaries with ease.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Iron" : new Item("Sword_Iron", "Iron Sword", "An iron sword, crafted with precision and strength in mind, offering a reliable and formidable weapon favored by warriors for its durability and cutting power on the battlefield.","{\"Traits\":[\"Equipable\"],\"Damage\":192}"),
 
             /* Silver Set */
-            "Blade-Silver" : new Item("Blade_Silver", "Silver Blade", "Vampires bane in one simple blade", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Silver" : new Item("Sword_Silver", "Silver Sword", "A sword made to eradicate the existence of vampires","{\"Traits\":[\"Equipable\"],\"Damage\":256}"),
+            "Blade-Silver" : new Item("Blade_Silver", "Silver Blade", "A blade crafted from gleaming silver, imbued with an otherworldly sheen and renowned for its ability to repel dark forces, offering a potent weapon for those who seek to combat the supernatural with purity and grace.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Silver" : new Item("Sword_Silver", "Silver Sword", "A silver sword, its shimmering blade infused with purity and strength, renowned for its effectiveness against the unholy and the supernatural, making it a favored weapon among hunters of the dark and defenders of the innocent.","{\"Traits\":[\"Equipable\"],\"Damage\":256}"),
 
             /* Jade Set */
-            "Blade-Jade" : new Item("Blade_Jade", "Jade Blade", "Unset", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Jade" : new Item("Sword_Jade", "Jade Sword", "Unset","{\"Traits\":[\"Equipable\"],\"Damage\":384}"),
+            "Blade-Jade" : new Item("Blade_Jade", "Jade Blade", "A masterfully crafted weapon forged from refined jade, exudes an aura of elegance and strength. Its verdant hue reflects the resilience of nature, while its razor-sharp edge promises precision and power in combat.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Jade" : new Item("Sword_Jade", "Jade Sword", "A formidable weapon crafted from the finest jade, emanates an aura of natural beauty and strength. Its sleek design and vibrant green hue symbolize resilience and vitality, making it a favored choice for warriors seeking both style and substance on the battlefield.","{\"Traits\":[\"Equipable\"],\"Damage\":384}"),
 
-            /* Jade Set */
-            "Blade-Gold" : new Item("Blade_Gold", "Gold Blade", "Unset", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Gold" : new Item("Sword_Gold", "Gold Sword", "Unset","{\"Traits\":[\"Equipable\"],\"Damage\":512}"),
+            /* Gold Set */
+            "Blade-Gold" : new Item("Blade_Gold", "Gold Blade", "A symbol of opulence and prestige, crafted from the finest gold, radiates a dazzling brilliance and promises swift and decisive strikes in battle, befitting of warriors of nobility and valor.", "{\"Traits\":[\"Material\"]}"),
+            "Sword-Gold" : new Item("Sword_Gold", "Gold Sword", "A regal weapon forged from pure gold, commands attention with its gleaming brilliance and promises both strength and prestige to its wielder, making it a prized possession fit for royalty and champions alike.","{\"Traits\":[\"Equipable\"],\"Damage\":512}"),
         }
         console.log("Game: Item Data Set")
 
@@ -112,21 +117,23 @@ class Game {
             "Bone" : [[this.Items["Slime-Green"], 15],[this.Items["Slime-Red"], 10]],
             "Rock" : [[this.Items["Slime-Blue"], 20],[this.Items["Slime-Red"], 20]],
             "Aura" :  [[this.Items["Slime-Blue"], 1000]],
-            "Copper" : [[this.Items["Slime-Blue"], 100],[this.Items["Slime-Red"], 100]],
-            "Iron" : [[this.Items["Slime-Blue"], 250],[this.Items["Slime-Red"], 250]],
-            "Silver" : [[this.Items["Slime-Yellow"], 250],[this.Items["Slime-Blue"], 1250],[this.Items["Slime-Red"], 1250]],
+            "Ore-Copper" : [[this.Items["Slime-Blue"], 100],[this.Items["Slime-Red"], 100]],
+            "Ore-Iron" : [[this.Items["Slime-Blue"], 250],[this.Items["Slime-Red"], 250]],
+            "Ore-Silver" : [[this.Items["Slime-Yellow"], 250],[this.Items["Slime-Blue"], 1250],[this.Items["Slime-Red"], 1250]],
+            "Jade" : [[this.Items["Aura"], 1],[this.Items["Slime-Green"], 5000],[this.Items["Echo-Stone"], 1]],
+            "Ore-Gold" : [[this.Items["Slime-Yellow"], 1000],[this.Items["Slime-Blue"], 10000],[this.Items["Slime-Red"], 10000],[this.Items["Echo-Stone"], 10]],
             "Handle-Wooden" : [[this.Items["Stick"], 2],[this.Items["String"], 2]],
             "Blade-Wooden" : [[this.Items["Stick"], 4]],
             "Sword-Wooden" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 4],[this.Items["Blade-Wooden"], 1]],
-            "Slime-Sword-Green" : [[this.Items["Slime-Green"], 10000]],
-            "Slime-Sword-Yellow" : [[this.Items["Slime-Yellow"], 10000]],
-            "Slime-Sword-Blue" : [[this.Items["Slime-Blue"], 10000]],
-            "Slime-Sword-Red" : [[this.Items["Slime-Red"], 10000]],
+            "Slime-Sword-Green" : [[this.Items["Slime-Green"], 5000]],
+            "Slime-Sword-Yellow" : [[this.Items["Slime-Yellow"], 5000]],
+            "Slime-Sword-Blue" : [[this.Items["Slime-Blue"], 5000]],
+            "Slime-Sword-Red" : [[this.Items["Slime-Red"], 5000]],
             "Slime-Sword" : [[this.Items["Slime-Sword-Green"], 1], [this.Items["Slime-Sword-Yellow"], 1], [this.Items["Slime-Sword-Blue"], 1], [this.Items["Slime-Sword-Red"], 1]],
-            "Slime-Sword-2" : [[this.Items["Slime-Sword"], 2]],
-            "Slime-Sword-3" : [[this.Items["Slime-Sword-2"], 2]],
-            "Slime-Sword-4" : [[this.Items["Slime-Sword-3"], 2]],
-            "Slime-Sword-5" : [[this.Items["Slime-Sword-4"], 2]],
+            "Slime-Sword-2" : [[this.Items["Slime-Sword"], 4]],
+            "Slime-Sword-3" : [[this.Items["Slime-Sword-2"], 4]],
+            "Slime-Sword-4" : [[this.Items["Slime-Sword-3"], 4]],
+            "Slime-Sword-5" : [[this.Items["Slime-Sword-4"], 4]],
             "Blade-Bone" : [[this.Items["Bone"], 16]],
             "Sword-Bone" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 4],[this.Items["Blade-Bone"], 1]],
             "Blade-Stone" : [[this.Items["Rock"], 24]],
@@ -139,16 +146,32 @@ class Game {
             "Sword-Iron" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 8],[this.Items["Blade-Iron"], 1]],
             "Blade-Silver" : [[this.Items["Silver"], 32]],
             "Sword-Silver" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 16],[this.Items["Blade-Silver"], 1]],
+            "Blade-Jade" : [[this.Items["Jade"], 16]],
+            "Sword-Jade" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 24],[this.Items["Blade-Jade"], 1]],
+            "Blade-Gold" : [[this.Items["Gold"], 24], [this.Items["Echo-Stone"], 2]],
+            "Sword-Gold" : [[this.Items["Handle-Wooden"], 1],[this.Items["String"], 24],[this.Items["Blade-Gold"], 1]],
         }
         console.log("Game: Recipe Data Set")
+
+        this.SmeltingRecipes = {
+            // "Essence-Nature" : [[this.Items["Slime-Green"], 100], 10],
+            // "Essence-Energy" : [[this.Items["Slime-Yellow"], 100], 10],
+            // "Essence-Water" : [[this.Items["Slime-Blue"], 100], 10],
+            // "Essence-Magma" : [[this.Items["Slime-Red"], 100], 10],
+            "Copper" : [[this.Items["Ore-Copper"], 1], 15],
+            "Iron" : [[this.Items["Ore-Iron"], 1], 60],
+            "Silver" : [[this.Items["Ore-Silver"], 2], 300],
+            "Gold" : [[this.Items["Ore-Gold"], 2], 600],
+            "Echo-Stone" : [[this.Items["Silver"], 2], 1200],
+        }
         
         this.Catagories = {
             "All" : [],
-            "Misc" : ["String", "Grass", "Stick", "Bone", "Rock"],
-            "Metals" : ["Copper", "Iron", "Silver"],
-            "Weaponry" : ["Handle-Wooden", "Blade-Wooden", "Sword-Wooden", "Slime-Sword-Green", "Slime-Sword-Yellow", "Slime-Sword-Blue", "Slime-Sword-Red", "Slime-Sword", "Slime-Sword-2", "Slime-Sword-3", "Slime-Sword-4", "Slime-Sword-5","Blade-Bone", "Sword-Bone", "Blade-Stone", "Sword-Stone", "Blade-Grass", "Sword-Grass", "Blade-Copper", "Sword-Copper", "Blade-Iron", "Sword-Iron", "Blade-Silver", "Sword-Silver"],
-            "Alchemy" : ["Aura"],
-            "Idle" : ["Aura"]
+            "Materials" : ["String", "Grass", "Stick", "Bone", "Rock", "Ore-Copper", "Ore-Iron", "Ore-Silver", "Jade", "Ore-Gold"],
+            "Weaponry" : ["Handle-Wooden", "Blade-Wooden", "Sword-Wooden", "Slime-Sword-Green", "Slime-Sword-Yellow", "Slime-Sword-Blue", "Slime-Sword-Red", "Slime-Sword", "Slime-Sword-2", "Slime-Sword-3", "Slime-Sword-4", "Slime-Sword-5",
+            "Blade-Bone", "Sword-Bone", "Blade-Stone", "Sword-Stone", "Blade-Grass", "Sword-Grass", "Blade-Copper", "Sword-Copper", "Blade-Iron", "Sword-Iron", "Blade-Silver", "Sword-Silver",
+            "Blade-Jade", "Sword-Jade", "Blade-Gold", "Sword-Gold"],
+            "Alchemy" : ["Aura"]
         }
         console.log("Game: Category Data Set")
 
@@ -177,8 +200,8 @@ class Game {
             "Goblin-Guard" :new Monster("Monster_Goblin_Guard", "Goblin Guard", 50000, 30, [ new DropChance(this.Items["Bone"], 0.1, 2), new DropChance(this.Items["Iron"], 0.01, 3), new DropChance(this.Items["Silver"], 0.001, 2), new DropChance(this.Items["Jade"], 0.0001, 1)]),
             "Goblin-Knight" :new Monster("Monster_Goblin_Knight", "Goblin Knight", 100000, 35, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.05, 5), new DropChance(this.Items["Silver"], 0.01, 3), new DropChance(this.Items["Jade"], 0.001, 2)]),
             "Goblin-Knight-Royal" :new Monster("Monster_Goblin_RoyalKnight", "Royal Goblin Knight", 500000, 40, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.1, 7), new DropChance(this.Items["Silver"], 0.05, 5), new DropChance(this.Items["Jade"], 0.00015, 2)]),
-            "Goblin-King" :new Monster("Monster_Goblin_King", "Goblin King", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 4), new DropChance(this.Items["Gold"], 0.5, 10)]),
-            "Goblin-Queen" :new Monster("Monster_Goblin_Queen", "Goblin Queen", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Gold"], 0.5, 10)]),
+            "Goblin-King" :new Monster("Monster_Goblin_King", "Goblin King", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 4), new DropChance(this.Items["Echo-Stone"], 0.05, 3)]),
+            "Goblin-Queen" :new Monster("Monster_Goblin_Queen", "Goblin Queen", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Echo-Stone"], 0.05, 3)]),
         }
         console.log("Game: Monster Data Set")
 
@@ -201,29 +224,37 @@ class Game {
         console.log("Game: Area Data Set")
 
         this.Quests = [
-            new QuestLine("Basic Hunting", [
-                    new Quest("Basic Hunt I", "A lot of small slimes have been closing in on the town, and threatening the children who play outside", "{\"slain\":[[\"Slime-Green-Small\", 100],[\"Slime-Yellow-Small\", 100],[\"Slime-Red-Small\", 100],[\"Slime-Blue-Small\", 100]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Rock\", 6]]}}"),
-                ],
-                [
-                    new Quest("Basic Hunt II", "Small slimes have started appearing randomly around town, it seems their population is growing exponentially", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Slime-Yellow-Small\", 1000],[\"Slime-Red-Small\", 1000],[\"Slime-Blue-Small\", 1000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
+            new QuestLine("Small Slime Hunting", [
+                    new Quest("Small Slime Hunt I", "Residents report an increase in small slime sightings near the town. Investigate and eliminate the threat to ensure the safety of the townsfolk.", "{\"slain\":[[\"Slime-Green-Small\", 100],[\"Slime-Yellow-Small\", 100],[\"Slime-Red-Small\", 100],[\"Slime-Blue-Small\", 100]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Rock\", 6]]}}"),
+                    new Quest("Small Slime Hunt II", "Reports confirm a hidden slime den as the source of the infestation. Your mission is to locate and eliminate the creatures within, ensuring the safety of the town from further slime encroachment.", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Slime-Yellow-Small\", 1000],[\"Slime-Red-Small\", 1000],[\"Slime-Blue-Small\", 1000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
+                    new Quest("Small Slime Hunt III", "Following the eradication of the slime den, reports indicate a hidden chamber harboring a colossal slime nest. Your mission is to venture into the depths, confront the monstrous slime creatures within, and eliminate the threat to the town's safety.", "{\"slain\":[[\"Slime-Green-Small\", 10000],[\"Slime-Yellow-Small\", 10000],[\"Slime-Red-Small\", 10000],[\"Slime-Blue-Small\", 10000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
+                    new Quest("Small Slime Hunt IV", "Having cleared the titan slime nest, reports reveal a deeper, more expansive cavern network beneath the town, housing a colossal slime nest. Your task is to navigate the labyrinthine depths, confront the hulking slime guardians, and purge the nest of its monstrous inhabitants to safeguard the town's well-being. Prepare for a perilous journey fraught with danger and uncertainty.", "{\"slain\":[[\"Slime-Green-Small\", 100000],[\"Slime-Yellow-Small\", 100000],[\"Slime-Red-Small\", 100000],[\"Slime-Blue-Small\", 100000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}")
                 ]
             ),
             new QuestLine("Sword Master", [
                     new Quest("Sword Master I", "I am interested in the art of swords, but I need a weapon, preferably something simple to get started", "{\"items\":[[\"Stick\", 1]],\"reward\":{\"xp\" : 500}}"),
-                
-                    new Quest("Sword Master II", "After learning the basics of sword play with a stick, I believe it's my time to move to a real weapon", "{\"items\":[[\"Wooden Sword\", 1]],\"reward\":{\"xp\" : 1000}}"),
-                
-                    new Quest("Sword Master III", "Now that I have some real experience, I want to boost my experience even further and faster", "{\"items\":[[\"Bone Sword\", 1]],\"reward\":{\"xp\" : 2000}}"),
-                
-                    new Quest("Sword Master IV", "With enough experience I realize I need a sturdy weapon I can trust on, a weapon that won't falter so easy", "{\"items\":[[\"Stone Sword\", 1]],\"reward\":{\"xp\" : 4000}}"),
-            
-                    new Quest("Sword Master V", "My sword now struggles to keep up with me and the strains of battle I put it threw. I must advance", "{\"items\":[[\"Copper Sword\", 1]],\"reward\":{\"xp\" : 8000}}"),
-        
-                    new Quest("Sword Master VI", "I seek the sword or iron to elevate my skills to the next level", "{\"items\":[[\"Iron Sword\", 1]],\"reward\":{\"xp\" : 16000}}"),
-          
-                    new Quest("Sword Master VII", "The vampires are coming, I must surpass my weaknesses and destroy them all", "{\"items\":[[\"Silver Sword\", 1]],\"reward\":{\"xp\" : 32000}}"),
+                    new Quest("Sword Master II", "After learning the basics of sword play with a stick, I believe it's my time to move to a real weapon", "{\"items\":[[\"Wooden Sword\", 1]],\"reward\":{\"xp\" : 2000}}"),                
+                    new Quest("Sword Master III", "Now that I have some real experience, I want to boost my experience even further and faster", "{\"items\":[[\"Bone Sword\", 1]],\"reward\":{\"xp\" : 8000}}"),                
+                    new Quest("Sword Master IV", "With enough experience I realize I need a sturdy weapon I can trust on, a weapon that won't falter so easy", "{\"items\":[[\"Stone Sword\", 1]],\"reward\":{\"xp\" : 32000}}"),            
+                    new Quest("Sword Master V", "My sword now struggles to keep up with me and the strains of battle I put it threw. I must advance", "{\"items\":[[\"Copper Sword\", 1]],\"reward\":{\"xp\" : 128000}}"),        
+                    new Quest("Sword Master VI", "I seek the sword or iron to elevate my skills to the next level", "{\"items\":[[\"Iron Sword\", 1]],\"reward\":{\"xp\" : 512000}}"),          
+                    new Quest("Sword Master VII", "The vampires are coming, I must surpass my weaknesses and destroy them all", "{\"items\":[[\"Silver Sword\", 1]],\"reward\":{\"xp\" : 2048000 }}")
                 ]
             ),
+            new QuestLine("Brewer Master", [
+                    new Quest("Brewer Master I", "Monsters have recently overran my field, but I have a deadline to have strength potions and am lacking grass to finish those potions", "{\"items\":[[\"Grass\", 10]],\"reward\":{\"xp\" : 50,\"items\" : [[\"Stick\", 1]]}}"),
+                    new Quest("Brewer Master II", "New potions are coming out in my rival shop, so I need more materials for my experimentation", "{\"items\":[[\"String\", 10],[\"Copper\", 5]],\"reward\":{\"xp\" : 300, \"items\" : [[\"Slime-Green\", 100]]}}"),
+                    new Quest("Brewer Master III", "I'm coming up on a breakthrough for a potion with something to do with undead beings", "{\"items\":[[\"Bone\", 10],[\"Aura\", 2]],\"reward\":{\"xp\" : 900, \"items\" : [[\"Slime-Red\", 500]]}}")
+                ]
+            ),
+            new QuestLine("Master Smither", [
+                    new Quest("Master Smither I", "Novice smith seeking copper ore to gain valuable experience in the craft of tool and weapon making. Embark on this quest to aid the aspiring artisan on their journey of skill development and craftsmanship.", "{\"items\":[[\"Copper Ore\", 10]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Copper\", 10]]}}"),
+                    new Quest("Master Smither II", "I'm a budding smith and I need iron to practice my craft. Looking for adventurers willing to gather iron ore. Let's work together to fuel my progress in metalworking!", "{\"items\":[[\"Raw Iron\", 10]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Iron\", 10]]}}"),
+                    new Quest("Master Smither III", "I'm a beginner smith in need of silver for my next project. If you can gather silver ore, I'll be able to continue honing my skills.", "{\"items\":[[\"Raw Silver\", 10]],\"reward\":{\"xp\" : 25000,\"items\" : [[\"Silver\", 10]]}}"),
+                    new Quest("Master Smither IV", "Having advanced in my craftsmanship, I'm now ready to work with jade in my next project. If you can acquire some jade for me, I'll be able to explore more intricate designs and techniques in my work. I heard you can get Echo Stones from smelting Silver", "{\"items\":[[\"Jade\", 10]],\"reward\":{\"xp\" : 125000,\"items\" : [[\"Echo-Stone\", 15]]}}"),
+                    new Quest("Master Smither V", "With my skills as a smith advancing, I now seek gold for my next endeavor. If you can provide gold, I'll be able to undertake more ambitious projects and showcase my growing expertise.", "{\"items\":[[\"Raw Gold\", 10]],\"reward\":{\"xp\" : 500000,\"items\" : [[\"Gold\", 10]]}}")
+                ]
+            )
         ]
         console.log("Game: Quest Data Set")
 
@@ -237,7 +268,7 @@ class Game {
         this.inventory = null;
         console.log("Game: Inventory Set")
 
-        this.CategoryNames = ["All", "Misc", "Metals", "Weaponry", "Alchemy", "Idle"]
+        this.CategoryNames = ["All", "Materials", "Weaponry", "Alchemy"]
         this.genCraftingMenu(this.CategoryNames[0])
         this.nextCategory();
 
@@ -351,59 +382,17 @@ class Game {
                 return [object.name, count];
             })
             if (this.inventory.hasAndRemoveItems(recipe)) {
-                console.log("Crafting succeeded")
                 this.inventory.addItem(this.Items[recipeName]);
                 PlayAudio(chinkAudio);
             }
         };
 
+        const div = document.createElement("div");
         const image = document.createElement("img");
         image.src = getImageURL(this.Items[recipeName].sprite);
         image.id = recipeName;
 
-        container.addEventListener('mouseenter', function(event) {
-            const tooltip = document.getElementById('tooltip');
-            //tooltip.textContent = container.dataset.tooltip;
-            tooltip.style.display = 'block';
-            tooltip.style.top = `${event.clientY + 10}px`;
-            tooltip.style.left = `${event.clientX + 10}px`;
-
-            const _item = game.Items[recipeName];
-            const _count = 1;
-
-
-            const attributes = JSON.parse(_item.attributes);
-            const title = document.getElementById('tooltipTitle');
-            const desc = document.getElementById('tooltipDescription');
-            let traits = attributes.Traits.join(", ")
-            let scrapText = ""
-            let damageText = ""
-            if (attributes.scrap) {
-                scrapText = attributes.scrap.map(([item, count]) => `${item} (x${count})`).join("\n");
-            }
-            if (attributes.Damage) {
-                damageText = "\n\nDamage: " + attributes.Damage;
-            }
-            if (attributes.DCM) {
-                damageText += "\nDrop Chance Multi: +" + attributes.DCM + "%";
-            }
-            if (attributes.XPM) {
-                damageText += "\nXP Multi: +" + attributes.XPM + "%";
-            }
-            
-            let alreadyHas = ""
-            for (let i = 0; i < game.inventory.inventory.length; i++) {
-                const userItem = game.inventory.inventory[i];
-                if (userItem[0].name == _item.name) {
-                    alreadyHas = `(x${userItem[1]})`;
-                }
-                
-            }
-            
-            title.innerText = `${_item.name} (x${_count}) ${alreadyHas}`;
-            
-            desc.innerText = `[${traits}]${damageText}\n\n${_item.description}${(scrapText != "") ? `\n\n[Scrap] (LMB)\n\n${scrapText}` : ""}`
-        });
+        addToolTipListener(container, this.Items[recipeName], 1);
     
         container.addEventListener('mouseleave', function() {
             const tooltip = document.getElementById('tooltip');
@@ -436,14 +425,18 @@ class Game {
 
         text.innerHTML = RecipeList;
 
-        container.appendChild(image);
+        container.appendChild(div)
         container.appendChild(text);
+        div.appendChild(image);
         list.appendChild(container);
     }
 
     createQuest() {
         this.Quests.forEach(questLine => {
-            if (!questLine.quests[questLine.currentQuest].isComplete) {
+            if (questLine.quests[questLine.currentQuest] == undefined) {
+                return;
+            }
+            if (!questLine.quests[questLine.currentQuest].isCompleted) {
                 const list = document.getElementById("questList");
                 const container = document.createElement("div");
                 container.classList.add("Quest");
@@ -480,7 +473,7 @@ class Game {
     }
 
     resetQuestMenu() {
-        for (let i = 0; i < document.getElementById("questList").children.length; i++) {
+        for (let i = 0; i < document.getElementById("questList").children.length; i) {
             const child = document.getElementById("questList").children[0];
             child.remove()
         }
@@ -555,7 +548,7 @@ class Game {
         const playerDMG = Math.max(1 * Math.sqrt(this.playerLevel / 2), 1) + this.playerLevel / 10;
         this.strength = Math.sqrt(Math.pow(playerDMG, 2) + Math.pow(((this.inventory.equipped != undefined) ? 1 + weaponDMG : 1), 2));
         this.dcm = 1;
-        this.dcm += (attributes["DCM"] == undefined) ? 1 : attributes["DCM"] / 100;
+        this.dcm += (attributes["DCM"] == undefined) ? 0 : attributes["DCM"] / 100;
 
         document.getElementById("PlayerStatsText").innerText = `Strength: ${Math.floor(10 * playerDMG) / 10}\nWeapon Strength: ${Math.floor(weaponDMG)}\nTotal Damage: ${Math.floor(10 * this.strength) / 10}\nDrop Chance Multi: ${Math.floor(10 * this.dcm) / 10}`
     }
@@ -564,22 +557,69 @@ class Game {
         const req = Math.pow(Math.max(this.playerLevel, lvl), 3) * 10;
         return req;
     }
-    
 
-    equipItem(itemName) {
-        const item = this.Items[this.getItem(itemName)];
-
-        if (JSON.parse(item.attributes).Traits.includes("Equipable")) {
-            this.inventory.hasAndRemoveItem(itemName);
+    setSlot(item, slotIMG, trait, audioSuccess, audioFail, funcHas, funcHasNot) {
+        if (JSON.parse(item.attributes).Traits.includes(trait)) {
+            this.inventory.hasAndRemoveItem(item.name);
+            slotIMG.src = getImageURL(item.sprite);
     
-            this.unequipItem();
-    
-            this.inventory.equipped = item;
-            document.getElementById("EquippedSlot").src = getImageURL(item.sprite);
-            this.updateStats();
-            PlayAudio(equipAudio)
+            funcHas(item);
+            PlayAudio(audioSuccess)
         } else {
+            funcHasNot();
+        }
 
+        this.inventory.drawItems();
+    }
+
+    checkSmelter() {
+        if (this.inventory.fuel == undefined || this.inventory.smelted == undefined) {
+            return;
+        }
+        Object.entries(this.SmeltingRecipes).forEach(([recipeName, recipe]) => {
+            if (this.Items[recipeName] == undefined) {
+                return;
+            }
+            try {
+                if (this.inventory.smelted[0].name == recipe[0][0].name) {
+                    if (this.inventory.smelted[1] <= 0) {
+                        this.inventory.smelted = undefined;
+                    }
+    
+                    // Time to craft
+                    this.inventory.smeltingTime = recipe[1];
+                    this.inventory.smeltingProgress = 0;
+                    this.inventory.canSmelt = false;
+                    const interval = setInterval(() => {
+                        document.getElementById("SmeltingBar").style.height = 100 * this.inventory.smeltingProgress / this.inventory.smeltingTime + "px";
+                        this.inventory.smeltingProgress += 50 / 1000;
+                        if (this.inventory.smeltingProgress > this.inventory.smeltingTime) {
+                            clearInterval(interval);
+                            this.inventory.smelted[1]--;
+                            this.inventory.fuel[1]--;
+
+                            this.inventory.addItem(this.Items[recipeName]);
+                            this.inventory.drawItems();
+                            this.inventory.canSmelt = true;
+    
+                            this.checkSmelter();
+                        }
+                    }, 50);
+                    this.inventory.drawItems();
+                }
+            } catch (error) {
+                // I got sick of this error :unamused:
+            }
+           
+        });
+
+        document.getElementById("SmelterFuelSlotImage")
+    }
+
+    getSmeltedResult() {
+        if (this.inventory.smeltedResult != undefined) {
+            this.inventory.addItem(this.inventory.smeltedResult);
+            this.inventory.smeltedResult = undefined;
         }
     }
 
@@ -603,5 +643,16 @@ class Game {
             }
         });
         return r;
+    }
+
+    updateItemTraits() {
+        this.inventory.inventory.forEach(([Item, Count]) => {
+            if (Item != undefined) {
+                console.log(Item)
+                let attr = JSON.parse(Item.attributes)
+                attr["Traits"] = JSON.parse(this.Items[Item.name].attributes)["Traits"]
+                Item.attributes = JSON.stringify(attr);
+            }
+        });
     }
 }

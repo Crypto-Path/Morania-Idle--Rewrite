@@ -1,9 +1,9 @@
 class Quest {
-    constructor(title, description, data) {
+    constructor(title, description, data, isCompleted = false) {
         this.title = title;
         this.description = description;
         this.data = JSON.parse(data);
-        this.isComplete = false;
+        this.isComplete = isCompleted;
 
         let sampleQuest = {
             "items" : [["Stick",2]],
@@ -37,17 +37,18 @@ class Quest {
     }
 
     getRewards(game) {
+        this.isComplete = true;
         game.gainXP((this.data["reward"]["xp"]) ? this.data["reward"]["xp"] : 0);
         if (this.data["reward"]["items"]) {
             for (let i = 0; i < this.data["reward"]["items"].length; i++) {
                 const itemData = this.data["reward"]["items"][i];
-                for (let j = 0; j < itemData[1].length; j++) {
+                for (let j = 0; j < itemData[1]; j++) {
                     const item = game.Items[itemData[0]];
                     game.inventory.addItem(item);             
                 }
             }
         }
-        this.isComplete = true;
+        game.inventory.drawItems()
         return true;
     }
 }

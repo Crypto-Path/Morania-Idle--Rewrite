@@ -79,6 +79,40 @@
 .CraftReqs {
     text-align: left;
     margin-top: 2px;
-    font-size: 8px;
+    font-size: 8.5px;
+    color:black;
     margin: 0;
+}
+
+.tab {
+    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab-left {
+    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-top-left-radius: 12px;
+}
+  
+.tab-right {
+    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-top-right-radius: 12px;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.tab-content.active {
+    display: block; 
 }

@@ -83,3 +83,61 @@ function handleContextMenu(event) {
 }
 
 document.addEventListener("contextmenu", handleContextMenu);
+
+function addToolTipListener(element, item_, count) {
+    element.addEventListener('mouseenter', function(event) {
+        console.log(count)
+        if (!((element.children[0].children[0].src == "") || (element.children[0].children[0].src.includes("index")) || count == undefined)) {
+            const tooltip = document.getElementById('tooltip');
+            //tooltip.textContent = container.dataset.tooltip;
+            tooltip.style.display = 'block';
+            tooltip.style.top = `${event.clientY + 10}px`;
+            tooltip.style.left = `${event.clientX + 10}px`;
+
+            const _item = (!isNaN(item_)) ? game.inventory.inventory[item_][0] : item_;
+            const _count = (!isNaN(item_)) ? game.inventory.inventory[item_][1] : count;
+
+
+            console.log(_item)
+            const attributes = JSON.parse(_item.attributes);
+            const title = document.getElementById('tooltipTitle');
+            const desc = document.getElementById('tooltipDescription');
+            let traits = attributes.Traits.join(", ")
+            let scrapText = ""
+            let damageText = ""
+            if (attributes.scrap) {
+                scrapText = attributes.scrap.map(([item, count]) => `${item} (x${count})`).join("\n");
+            }
+            if (attributes.Damage) {
+                damageText = "\n\nDamage: " + attributes.Damage;
+            }
+            if (attributes.DCM) {
+                damageText += "\nDrop Chance Multi: +" + attributes.DCM + "%";
+            }
+            if (attributes.XPM) {
+                damageText += "\nXP Multi: +" + attributes.XPM + "%";
+            }
+            
+            title.innerText = `${_item.name} ${(_count == 1) ? "" : "(x" + _count + ")"}`;
+            
+            desc.innerText = `[${traits}]${damageText}\n\n${_item.description}${(scrapText != "") ? `\n\n[Scrap] (LMB)\n\n${scrapText}` : ""}`
+        }
+    });
+}
+
+function fadeScreen() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.opacity = '1'; // Fade in the overlay
+    overlay.style.pointerEvents = 'auto'; // Enable clicks
+}
+
+function unfadeScreen() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.opacity = '0'; // Fade out the overlay
+    overlay.style.pointerEvents = 'none'; // Disable clicks
+}
+
+function openTab(unlock, lock) {
+    document.getElementById(unlock).classList.remove("Locked");
+    document.getElementById(lock).classList.add("Locked");
+}

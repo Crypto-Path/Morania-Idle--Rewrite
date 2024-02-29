@@ -4,6 +4,13 @@ class Inventory {
         this.inventory = []
 
         this.equipped = undefined;
+        
+        this.fuel = undefined;
+        this.smelted = undefined;
+        this.smelterResult = undefined;
+        this.smeltingProgress = 0;
+        this.smeltingTime = 1;
+        this.canSmelt = true;
     }
 
     drawItems() {
@@ -14,8 +21,32 @@ class Inventory {
                 slot.setAttribute('src', imageURL);
             } else {
                 slot.setAttribute('src', "");
+                slot.parentElement.nextSibling.innerText = "";
             }
         });
+
+
+        if (this.fuel)
+            if (this.fuel[1] <= 0)
+                this.fuel = undefined;
+            
+
+        if (this.smelted)
+            if (this.smelted[1] <= 0)
+                this.smelted = undefined;
+
+        if (this.fuel) {
+            document.getElementById("SmelterFuelSlotImage").parentElement.nextSibling.innerText = this.fuel[1];
+        } else {
+            document.getElementById("SmelterFuelSlotImage").parentElement.nextSibling.innerText = "";
+            document.getElementById("SmelterFuelSlotImage").src = "";
+        }
+        if (this.smelted) {
+            document.getElementById("SmelterOreSlotImage").parentElement.nextSibling.innerText = this.smelted[1];
+        } else {
+            document.getElementById("SmelterOreSlotImage").parentElement.nextSibling.innerText = "";
+            document.getElementById("SmelterOreSlotImage").src = "";
+        }
     }
 
     hasItem(itemName, amount = 1) {
