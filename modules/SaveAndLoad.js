@@ -99,7 +99,7 @@ class SaveAndLoad {
                 console.log("File: Redrawing Equipped Weapon")
             }
 
-            if (data[5]) {
+            if (data[5]) { // STUPID WEB CAHCE STOP F'ING WITH GITHUB AND UPDATE THIS FILE FOR THE WEB
                 console.log(data[5])
                 this.game.Quests.forEach((questLine) => {
                     questLine.quests.forEach((quest) => {
