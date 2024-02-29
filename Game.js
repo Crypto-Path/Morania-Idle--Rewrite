@@ -648,9 +648,8 @@ class Game {
     updateItemTraits() {
         this.inventory.inventory.forEach(([Item, Count]) => {
             if (Item != undefined) {
-                console.log(Item)
                 let attr = JSON.parse(Item.attributes)
-                attr["Traits"] = JSON.parse(this.Items[Item.name].attributes)["Traits"]
+                attr["Traits"] = JSON.parse(this.Items[this.getItem(Item.name)].attributes)["Traits"]
                 Item.attributes = JSON.stringify(attr);
             }
         });

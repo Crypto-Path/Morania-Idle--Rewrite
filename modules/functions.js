@@ -86,7 +86,6 @@ document.addEventListener("contextmenu", handleContextMenu);
 
 function addToolTipListener(element, item_, count) {
     element.addEventListener('mouseenter', function(event) {
-        console.log(count)
         if (!((element.children[0].children[0].src == "") || (element.children[0].children[0].src.includes("index")) || count == undefined)) {
             const tooltip = document.getElementById('tooltip');
             //tooltip.textContent = container.dataset.tooltip;
@@ -97,8 +96,6 @@ function addToolTipListener(element, item_, count) {
             const _item = (!isNaN(item_)) ? game.inventory.inventory[item_][0] : item_;
             const _count = (!isNaN(item_)) ? game.inventory.inventory[item_][1] : count;
 
-
-            console.log(_item)
             const attributes = JSON.parse(_item.attributes);
             const title = document.getElementById('tooltipTitle');
             const desc = document.getElementById('tooltipDescription');

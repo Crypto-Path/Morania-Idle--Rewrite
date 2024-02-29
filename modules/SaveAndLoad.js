@@ -127,14 +127,17 @@ class SaveAndLoad {
         items.forEach(item => {
             deitem = item
             let id = deitem.children[0].children[0].id;
-            console.log(id)
-            addToolTipListener(item, deitem.children[0].children[0].id, (game.inventory.inventory[deitem.children[0].children[0].id]) ? game.inventory.inventory[deitem.children[0].children[0].id][1] : 0)
+            if (!isNaN(id)) {
+                addToolTipListener(item, deitem.children[0].children[0].id, (game.inventory.inventory[deitem.children[0].children[0].id]) ? game.inventory.inventory[deitem.children[0].children[0].id][1] : 0)
 
-            item.addEventListener('mouseleave', function() {
-                const tooltip = document.getElementById('tooltip');
-                tooltip.style.display = 'none';
-            });
+                item.addEventListener('mouseleave', function() {
+                    const tooltip = document.getElementById('tooltip');
+                    tooltip.style.display = 'none';
+                });
+            }
         });
+
+        this.game.updateItemTraits();
         return data;
     }
 
