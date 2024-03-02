@@ -1,0 +1,5 @@
+.popup {
+    position: absolute;
+    pointer-events: none;
+    color: greenyellow;
+}

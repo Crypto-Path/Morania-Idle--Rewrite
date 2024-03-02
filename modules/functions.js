@@ -42,17 +42,15 @@ document.addEventListener("dragend", () => {
 })
 
 function PlayAudio(audio, timeout, time = 0) {
+    if (audio.paused) {
+        audio.currentTime = time;
+        audio.play();
     
-    if (!audio.paused) {
-        audio.pause;
-    }
-    audio.currentTime = time;
-    audio.play();
-
-    if (timeout > 0) {
-        setTimeout(() => {
-            audio.pause();
-        }, timeout)
+        if (timeout > 0) {
+            setTimeout(() => {
+                audio.pause();
+            }, timeout)
+        }
     }
 }
 
@@ -137,4 +135,26 @@ function unfadeScreen() {
 function openTab(unlock, lock) {
     document.getElementById(unlock).classList.remove("Locked");
     document.getElementById(lock).classList.add("Locked");
+}
+
+function createPopup(text) {
+    const textOBJ = document.createElement("a");
+    textOBJ.classList.add("popup");
+    textOBJ.innerText = text;
+
+    document.body.appendChild(textOBJ)
+    textOBJ.style.left = mousePos[0] + "px";
+    textOBJ.style.top = mousePos[1] + "px";
+
+    let b = 1000
+    const a = setInterval(() => {
+        textOBJ.style.top = parseInt(textOBJ.style.top) - 1 + "px";
+        textOBJ.style.opacity = b/1000;
+        b--;
+        if (b < 0) {
+            clearInterval(a);
+            textOBJ.remove();
+        }
+    }, 1);
+
 }

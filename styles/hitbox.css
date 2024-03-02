@@ -28,6 +28,11 @@
     animation: scaleAnimation 3s infinite alternate; /* 5s duration, alternate direction, infinite loop */
 }
 
+#hitBoxImageDead {
+    transition-duration: 200ms;
+    transform: scale(0.3) !important;
+}
+
 @keyframes scaleAnimation {
     0% { /* Start of the animation */
         width: 90%;

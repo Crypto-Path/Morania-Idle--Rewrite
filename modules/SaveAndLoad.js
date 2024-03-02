@@ -3,7 +3,7 @@ class SaveAndLoad {
         this.game = game;
         this.date = date.toLocaleString();
         this.loaded = false;
-        this.version = "v1.0.3b";
+        this.version = "v1.0.4b";
     }
 
     reeval() {

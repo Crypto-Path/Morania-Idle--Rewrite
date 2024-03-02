@@ -25,12 +25,15 @@ class Inventory {
             }
         });
 
+        if (this.equipped){
+            document.getElementById("EquippedSlot").src = getImageURL(this.equipped.sprite);
+        } else {
+            document.getElementById("EquippedSlot").src = "";
+        }
 
         if (this.fuel)
             if (this.fuel[1] <= 0)
                 this.fuel = undefined;
-            
-
         if (this.smelted)
             if (this.smelted[1] <= 0)
                 this.smelted = undefined;

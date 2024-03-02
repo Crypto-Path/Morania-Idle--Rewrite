@@ -1,11 +1,12 @@
 class Monster {
-    constructor(sprite, name, hp, def, drops) {
+    constructor(sprite, name, hp, def, drops, description) {
         this.sprite = sprite;
         this.name = name;
         this.maxHp = hp
         this.hp = hp;
         this.def = def;
         this.drops = drops;
+        this.description = description;
 
         this.deaths = 0;
     }

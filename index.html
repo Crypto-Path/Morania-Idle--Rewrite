@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Morania Idle: Rewrite
+            Morania Idle v1.0.4b
         </title>
         <meta http-equiv='cache-control' content='no-cache'> 
         <meta http-equiv='expires' content='0'> 
@@ -16,10 +16,12 @@
         <link rel="stylesheet" type="text/css" href="styles/quests.css">
         <link rel="stylesheet" type="text/css" href="styles/bars.css">
         <link rel="stylesheet" type="text/css" href="styles/toolTip.css">
+        <link rel="stylesheet" type="text/css" href="styles/bestiary.css">
         <link rel="stylesheet" type="text/css" href="styles/notification.css">
         <link rel="stylesheet" type="text/css" href="styles/changelog.css">
         <link rel="stylesheet" type="text/css" href="styles/lines.css">
         <link rel="stylesheet" type="text/css" href="styles/scrollBar.css">
+        <link rel="stylesheet" type="text/css" href="styles/popup.css">
     </head>
     <body>
         <script src="modules/functions.js"></script>
@@ -71,39 +73,90 @@
         <div class="overlay" id="overlay"></div>
         <div class="notification-container"></div>
         <script src="modules/Notification.js"></script>
+        <div id="Bestiary" class="Locked">
+            <div id="BeastInfoPanel">
+                <div>
+                    <button id="bestiaryClose" class="close-btn" style="position: absolute;" onclick="{game.toggleBestiary();}">
+                        X
+                    </button>
+                    <h1 id="BestiaryName">
+                        Bestiary
+                    </h1>
+                    <hr>
+                    <p id="BestiaryDescription">
+                        Description
+                    </p>
+                </div>
+                <div id="MonsterStats" class="container">
+                    <h3>
+                        Stats and Drops
+                    </h3>
+                    <hr>
+                    <p>
+                        HP: <a id="BestiaryHP">X</a>
+                        <br>
+                        DEF: <a id="BestiaryDef">X</a>
+                        <br>
+                        <br>
+                        Deaths: <a id="BestiaryDeaths">X</a>
+                        <br>
+                        <br>
+                        <div id="BestiaryDrops" class="container">
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div id="BestiaryContainer">
+                <div id="BeastList">
+                </div>
+            </div>
+        </div>
         <div id="mainMenu">
             <div id="changeLog" class="container">
                 <a style="font-size: 30px; text-align: center; width: 100%">
                     Change Log
                 </a>
                 <div id="changeLogList" class = "container">
-                <div  class = "container changeLogItem">
-                    <a style="font-size: 20px;">
-                        v1.0.3
-                    </a>
-                    <p class="changelogDesc">
-                    What's new?
-                    - Added Discord link (bottom right) (please join)
-                    - Link to my about me website (bottom right)
-                    - Fixed Questing
-                    &#160&#160&#160- Quests no longer duplicate
-                    &#160&#160&#160- Item rewards are now given
-                    &#160&#160&#160- Inventory now updates after completion
-                    &#160&#160&#160- Each quest now accepts it's correct requirement
-                    &#160&#160&#160- Quests completed, save now
-                    - Item quantities go away when there is no item
-                    - Removed user quantity from crafting tooltip
-                    - Fixed Drop Multiplier being +100% on weapons that didn't have that data
-                    - Added Smelter
-                    - Added production tabs
-                    - Improved item descriptions
-                    - Added refined/unrefined variants to metallic materials
-                    - Improved and Optimized tooltips
-                    - Gold and Jade weapons
-                    - Better descriptions for every item
-                    - Rebalanced Slime Weapons
-                    </p>
-                </div>
+                    <div  class = "container changeLogItem">
+                        <a style="font-size: 20px;">
+                            v1.0.4
+                        </a>
+                        <p class="changelogDesc">
+                        What's new?
+                        - Fixed monster false rendering after second to last hit.
+                        - Added bestiary
+                        - Loot Popups
+                        - Fixed audio bug from attacking the monster too fast
+                        - Improved category switcher
+                        </p>
+                    </div>
+                    <div  class = "container changeLogItem">
+                        <a style="font-size: 20px;">
+                            v1.0.3
+                        </a>
+                        <p class="changelogDesc">
+                        What's new?
+                        - Added Discord link (bottom right) (please join)
+                        - Link to my about me website (bottom right)
+                        - Fixed Questing
+                        &#160&#160&#160- Quests no longer duplicate
+                        &#160&#160&#160- Item rewards are now given
+                        &#160&#160&#160- Inventory now updates after completion
+                        &#160&#160&#160- Each quest now accepts it's correct requirement
+                        &#160&#160&#160- Quests completed, save now
+                        - Item quantities go away when there is no item
+                        - Removed user quantity from crafting tooltip
+                        - Fixed Drop Multiplier being +100% on weapons that didn't have that data
+                        - Added Smelter
+                        - Added production tabs
+                        - Improved item descriptions
+                        - Added refined/unrefined variants to metallic materials
+                        - Improved and Optimized tooltips
+                        - Gold and Jade weapons
+                        - Better descriptions for every item
+                        - Rebalanced Slime Weapons
+                        </p>
+                    </div>
                     <div  class = "container changeLogItem">
                         <a style="font-size: 20px;">
                             v1.0.2
@@ -157,6 +210,9 @@
         <div id="body" style="display: none;">
             <div>
                 <div class="container">
+                    <button class="close-btn" style="position: absolute;" onclick="{game.toggleBestiary();}">
+                        Bestiary
+                    </button>
                     <p>
                         Guild
                     </p>
@@ -222,14 +278,15 @@
                         <button class="tab-right" onclick="openTab('SmeltingMenu','CraftingMenu')">Smelting</button>
                     </div>
                     <div id="CraftingMenu">
+                        <p id="Catagory">
+                            <button onclick="{game.previousCategory(); PlayAudio(tabAudio)}"><</button>
+                            <a id="CategoryText">
+                                All
+                            </a>   
+                            <button onclick="{game.nextCategory(); PlayAudio(tabAudio)}">></button>
+                        </p>
                         <div id="CraftingMenuItemsContainer">
-                            <p id="Catagory">
-                                <button onclick="{game.previousCategory(); PlayAudio(tabAudio)}"><</button>
-                                <a id="CategoryText">
-                                    All
-                                </a>   
-                                <button onclick="{game.nextCategory(); PlayAudio(tabAudio)}">></button>
-                            </p>
+                            
                             <div class="CraftingList">
                             </div>
                         </div>
@@ -476,6 +533,8 @@
 
             let autoAttack = false;
 
+            let mousePos = [0, 0];
+
             document.addEventListener("DOMContentLoaded", function() {
                 game = new Game();
                 game.inventory = new Inventory(document.querySelectorAll('.slotIMG'));
@@ -491,6 +550,9 @@
                 document.addEventListener("mousemove", (event) => {
                     tooltip.style.top = `${event.clientY + 10}px`;
                     tooltip.style.left = `${event.clientX + 10}px`;
+
+                    mousePos[0] = event.clientX;
+                    mousePos[1] = event.clientY;
                 });
             });
 
@@ -504,9 +566,9 @@
                 if (input) {
                     PlayAudio(attackAudio, 220);
                 }
+                game.attackMonster();
                 hitHitBox();
                 RenderHPBar(monsterNameText, healthBarInner, secondHealthBarInner, healthBarText);
-                game.attackMonster();
             };
 
             function RenderHPBar (nText, hBar, hBar2, hBarText) {
@@ -532,7 +594,7 @@
                 
                 setTimeout(() => {
                     hitBox.style.transition = "transform 1s";
-                    hitBox.style.transform = "rotate(0deg)";
+                    hitBox.style.transform += "rotate(0deg)";
                 }, 60)
 
                 setTimeout(() => {
@@ -625,7 +687,7 @@
             <img title="Cyphe Games (Discord)" onclick="{window.open('https://discord.com/invite/nhzhtfYYbH', '_blank');}"  src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" width="64"/>
         </div>
         <a class="bottom-right">
-            v1.0.3
+            v1.0.4
         </a>
     </body>
 </html>
