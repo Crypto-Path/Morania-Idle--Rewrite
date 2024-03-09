@@ -725,8 +725,10 @@ class Game {
             item.classList.add("achievement");
             if (achievement.checkCompletion() || this.obtainedAchievements.includes(achievement.title)) {
                 item.classList.add("completed");
-                if (!this.obtainedAchievements.includes(achievement.title)) {
-                    this.obtainedAchievements.push(achievement.title);
+                if (this.obtainedAchievements.length != undefined) {
+                    if (!this.obtainedAchievements.includes(achievement.title)) {
+                        this.obtainedAchievements.push(achievement.title);
+                    }
                 }
             }
             item.innerHTML = `
