@@ -45,6 +45,11 @@ button:active {
     color: rgb(200, 200, 200);
 }
 
+input {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
 input:hover {
     cursor:pointer;
 }

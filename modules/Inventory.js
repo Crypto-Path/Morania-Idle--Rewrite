@@ -28,7 +28,7 @@ class Inventory {
         if (this.equipped){
             document.getElementById("EquippedSlot").src = getImageURL(this.equipped.sprite);
         } else {
-            document.getElementById("EquippedSlot").src = "";
+            document.getElementById("EquippedSlot").src = getImageURL("Slot_Equipment_Sword");
         }
 
         if (this.fuel)
@@ -50,6 +50,14 @@ class Inventory {
             document.getElementById("SmelterOreSlotImage").parentElement.nextSibling.innerText = "";
             document.getElementById("SmelterOreSlotImage").src = "";
         }
+
+        
+        let c = 0;
+        game.inventory.inventory.forEach(([item, count]) => {
+            c += count;
+        });
+        const fame = Math.floor(((game.monstersDefeated / 10000) ** 0.25 * game.playerLevel / (game.totalAttacks ** 0.25)) * (1 + (Math.sqrt(game.playerTotalXP + game.strength * c))) * 10) / 1000;
+        document.getElementById("fame").innerText = fame;
     }
 
     hasItem(itemName, amount = 1) {
@@ -107,8 +115,14 @@ class Inventory {
         for (let i = 0; i < this.inventory.length; i++) {
             const item = this.inventory[i];
             if (item[0].name === itemToAdd.name) {
+                const slot = document.getElementById(i);
+                slot.style.transform = "scale(1.1)";
+
                 item[1] += count;
                 this.drawItems()
+                setTimeout(() => {
+                    slot.style.transform = "";
+                }, 200)
                 return true;
             }
         }

@@ -15,8 +15,9 @@
 }
 
 #Catagory {
+    margin-top: 0;
     display: flex;
-    background-color: rgba(119, 59, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 2rem;
     align-content: center;
     justify-content: space-between;
@@ -90,25 +91,25 @@
 }
 
 .tab {
-    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
+    background: linear-gradient(to bottom, rgb(99 99 99 / 50%), rgb(0 0 0 / 50%));
     border: none;
     padding: 10px 20px;
     cursor: pointer;
 }
 
+.tab:hover p {
+    transform: scale(1.1);
+}
+
+.tab:hover {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 50%), rgb(99 99 99 / 50%));
+}
+
 .tab-left {
-    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-top-left-radius: 12px;
 }
   
 .tab-right {
-    background: linear-gradient(to bottom, rgba(54, 54, 54, 0.5), rgba(36, 36, 36, 0.5));
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-top-right-radius: 12px;
 }
 

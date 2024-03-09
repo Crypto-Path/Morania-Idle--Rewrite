@@ -9,6 +9,7 @@ class Monster {
         this.description = description;
 
         this.deaths = 0;
+        this.xp = 0;
     }
 
     getDrops(dcm) {

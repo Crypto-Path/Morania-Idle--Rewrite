@@ -3,7 +3,7 @@ class SaveAndLoad {
         this.game = game;
         this.date = date.toLocaleString();
         this.loaded = false;
-        this.version = "v1.0.4b";
+        this.version = "v1.0.5b";
     }
 
     reeval() {
@@ -12,6 +12,10 @@ class SaveAndLoad {
         this.monsterStats = this.game.Monsters;
         this.playerStats = [this.game.playerXP, this.game.playerLevel, this.game.playerTotalXP]
         this.quests = [];
+        this.other = {
+            "totalAttacks" : game.totalAttacks,
+            "obtainedAchievements" : this.game.obtainedAchievements
+        };
         this.game.Quests.forEach((questLine) => {
             questLine.quests.forEach((quest) => {
                 if (quest.isComplete) {
@@ -20,7 +24,7 @@ class SaveAndLoad {
 
             });
         });
-        return [this.date, this.inventory, this.equipped, this.monsterStats, this.playerStats, this.quests, this.version];
+        return [this.date, this.inventory, this.equipped, this.monsterStats, this.playerStats, this.quests, this.version, this.other];
     }
 
     save(ls = true, auto = false) {
@@ -83,9 +87,15 @@ class SaveAndLoad {
             console.log("File: Inventory Overwritten")
             this.game.inventory.equipped = data[2] || undefined;
             console.log("File: Equipment Overwritten")
+            let c = 0;
             Object.entries(data[3]).forEach(([id, monster]) => {
                 this.game.Monsters[id].deaths = monster.deaths;
+                this.game.Monsters[id].xp = monster.xp || 0;
+                c += monster.deaths;
             });
+            this.game.totalAttacks = (data[7]) ? ((data[7]["totalAttacks"]) ? data[7]["totalAttacks"] : 0) : 0;
+            this.game.obtainedAchievements = (data[7]) ? ((data[7]["obtainedAchievements"]) ? data[7]["obtainedAchievements"] : 0) : 0;
+            this.game.monstersDefeated = c;
             console.log("File: Monster Data Overwritten")
             this.game.playerXP = data[4][0];
             this.game.playerLevel = data[4][1];
@@ -99,7 +109,7 @@ class SaveAndLoad {
                 console.log("File: Redrawing Equipped Weapon")
             }
 
-            if (data[5]) { // STUPID WEB CAHCE STOP F'ING WITH GITHUB AND UPDATE THIS FILE FOR THE WEB
+            if (data[5]) {
                 console.log(data[5])
                 this.game.Quests.forEach((questLine) => {
                     questLine.quests.forEach((quest) => {
@@ -140,6 +150,8 @@ class SaveAndLoad {
         });
 
         this.game.updateItemTraits();
+
+
         return data;
     }
 

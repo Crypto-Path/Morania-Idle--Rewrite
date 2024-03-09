@@ -3,6 +3,9 @@ class Game {
         console.log("Game: Initializing Game Data")
         this.strength = 1;
         this.dcm = 1; // Drop Chance Multiplier
+        this.xpm = 1; //
+        this.totalAttacks = 0;
+        this.monstersDefeated = 0;
 
         this.Items = {
             /* General Materials */
@@ -78,7 +81,7 @@ class Game {
 
             /* Bone Set */
             "Blade-Bone" : new Item("Blade_Bone", "Bone Blade", "A blade crafted from bone, its jagged edges honed to a keen edge, offering a primitive yet effective weapon for those who dare to wield it.", "{\"Traits\":[\"Material\"]}"),
-            "Sword-Bone" : new Item("Sword_Bone", "Bone Sword", "A sword fashioned from bone, its primitive yet sturdy design reflecting the resourcefulness of its creator, offering a formidable weapon with a haunting aesthetic.","{\"Traits\":[\"Equipable\"],\"Damage\":12,\"XPM\":25}"),
+            "Sword-Bone" : new Item("Sword_Bone", "Bone Sword", "A sword fashioned from bone, its primitive yet sturdy design reflecting the resourcefulness of its creator, offering a formidable weapon with a haunting aesthetic.","{\"Traits\":[\"Equipable\"],\"Damage\":12,\"XPM\":100}"),
 
             /* Stone Set */
             "Blade-Stone" : new Item("Blade_Stone", "Stone Blade", "A blade hewn from solid stone, its rough edges honed to a crude yet effective edge, embodying the primal strength of the earth and offering a rugged weapon for survival in the wilderness.", "{\"Traits\":[\"Material\"]}"),
@@ -171,7 +174,8 @@ class Game {
             "Weaponry" : ["Handle-Wooden", "Blade-Wooden", "Sword-Wooden", "Slime-Sword-Green", "Slime-Sword-Yellow", "Slime-Sword-Blue", "Slime-Sword-Red", "Slime-Sword", "Slime-Sword-2", "Slime-Sword-3", "Slime-Sword-4", "Slime-Sword-5",
             "Blade-Bone", "Sword-Bone", "Blade-Stone", "Sword-Stone", "Blade-Grass", "Sword-Grass", "Blade-Copper", "Sword-Copper", "Blade-Iron", "Sword-Iron", "Blade-Silver", "Sword-Silver",
             "Blade-Jade", "Sword-Jade", "Blade-Gold", "Sword-Gold"],
-            "Alchemy" : ["Aura"]
+            "Alchemy" : ["Aura"],
+            "Alphabetical" : []
         }
         console.log("Game: Category Data Set")
 
@@ -188,20 +192,20 @@ class Game {
             "Slime-Yellow-Large" :new Monster("Monster_Slime_Large_Yellow", "Large Yellow Slime", 300, 10, [ new DropChance(this.Items["Slime-Yellow"], 0.16, 9), new DropChance(this.Items["Slime-Sword-Green"], 0.00003, 1)], "In the vast expanses of the large plains, the large yellow slime reigns supreme, its electrifying aura crackling with potent energy. Towering over its smaller counterparts, it moves with a slow but deliberate pace, its imposing form serving as a warning to all who dare to cross its path. Approach with caution, for a single touch from this creature could result in a shocking outcome."),
             "Slime-Blue-Large" :new Monster("Monster_Slime_Large_Blue", "Large Blue Slime", 300, 10, [ new DropChance(this.Items["Slime-Blue"], 0.16, 6), new DropChance(this.Items["Slime-Sword-Blue"], 0.00003, 1)], "Amidst the endless grasslands of the large plains, the large blue slime drifts with an ethereal grace, its fluid form shimmering with an otherworldly glow. Unlike its smaller brethren, this creature possesses a tranquil aura, luring unsuspecting travelers into a false sense of security. Yet, beneath its serene exterior lies a potential threat, as its size grants it the ability to engulf even the most vigilant adventurers."),
             "Slime-Red-Large" :new Monster("Monster_Slime_Large_Red", "Large Red Slime", 300, 10, [ new DropChance(this.Items["Slime-Red"], 0.16, 3), new DropChance(this.Items["Slime-Sword-Red"], 0.00003, 1)], "Rarely glimpsed but feared by those who traverse the large plains, the large red slime embodies the fiery essence of its surroundings. Its crimson form stands out against the backdrop of greenery, a beacon of danger warning all who approach. With each lumbering movement, it leaves behind scorch marks on the earth, a testament to its formidable strength and potential for destruction."),
-            "Slime-Green-Massive" : new Monster("Monster_Slime_Massive_Green", "Massive Green Slime", 1000, 15, [ new DropChance(this.Items["Slime-Green"], 0.18, 16), new DropChance(this.Items["Slime-Sword-Yellow"], 0.00004, 1)], "Dominating the expansive landscape of the massive plains, the massive green slime looms like a colossal behemoth, its gelatinous bulk dwarfing all who dare to approach. With each ponderous movement, it leaves behind a trail of destruction, its sheer size and strength capable of engulfing entire swathes of terrain. Travelers beware, for confronting this gargantuan creature requires courage and cunning in equal measure."),
-            "Slime-Yellow-Massive" :new Monster("Monster_Slime_Massive_Yellow", "Massive Yellow Slime", 1000, 15, [ new DropChance(this.Items["Slime-Yellow"], 0.18, 12), new DropChance(this.Items["Slime-Sword-Green"], 0.00004, 1)], "In the vast and sprawling expanse of the massive plains, the massive yellow slime reigns supreme, its towering form crackling with untamed energy. With each electrifying pulse, it sends shockwaves rippling through the surrounding landscape, a potent reminder of its immense power. Those who encounter this colossal creature would be wise to tread carefully, lest they become ensnared in its electrifying grasp."),
-            "Slime-Blue-Massive" :new Monster("Monster_Slime_Massive_Blue", "Massive Blue Slime", 1000, 15, [ new DropChance(this.Items["Slime-Blue"], 0.18, 8), new DropChance(this.Items["Slime-Sword-Blue"], 0.00004, 1)], "Amidst the boundless horizons of the massive plains, the massive blue slime drifts like a majestic apparition, its ethereal form casting a shimmering glow across the landscape. Unlike its smaller counterparts, this colossal creature exudes an aura of serenity, inviting travelers to approach with cautious curiosity. Yet, beneath its tranquil exterior lies a formidable adversary, capable of enveloping even the most seasoned adventurers in its watery embrace."),
-            "Slime-Red-Massive" :new Monster("Monster_Slime_Massive_Red", "Massive Red Slime", 1000, 15, [ new DropChance(this.Items["Slime-Red"], 0.18, 4), new DropChance(this.Items["Slime-Sword-Red"], 0.00004, 1)], "Rare and fearsome, the massive red slime prowls the vast expanses of the massive plains, its fiery presence casting a crimson glow over the land. Towering over the landscape like a living inferno, it leaves a trail of scorching devastation in its wake, its immense size and ferocious demeanor striking fear into the hearts of all who encounter it. To face this colossal creature is to confront the very essence of primal fury and elemental chaos."),
+            "Slime-Green-Massive" : new Monster("Monster_Slime_Massive_Green", "Massive Green Slime", 900, 15, [ new DropChance(this.Items["Slime-Green"], 0.18, 16), new DropChance(this.Items["Slime-Sword-Yellow"], 0.00004, 1)], "Dominating the expansive landscape of the massive plains, the massive green slime looms like a colossal behemoth, its gelatinous bulk dwarfing all who dare to approach. With each ponderous movement, it leaves behind a trail of destruction, its sheer size and strength capable of engulfing entire swathes of terrain. Travelers beware, for confronting this gargantuan creature requires courage and cunning in equal measure."),
+            "Slime-Yellow-Massive" :new Monster("Monster_Slime_Massive_Yellow", "Massive Yellow Slime", 900, 15, [ new DropChance(this.Items["Slime-Yellow"], 0.18, 12), new DropChance(this.Items["Slime-Sword-Green"], 0.00004, 1)], "In the vast and sprawling expanse of the massive plains, the massive yellow slime reigns supreme, its towering form crackling with untamed energy. With each electrifying pulse, it sends shockwaves rippling through the surrounding landscape, a potent reminder of its immense power. Those who encounter this colossal creature would be wise to tread carefully, lest they become ensnared in its electrifying grasp."),
+            "Slime-Blue-Massive" :new Monster("Monster_Slime_Massive_Blue", "Massive Blue Slime", 900, 15, [ new DropChance(this.Items["Slime-Blue"], 0.18, 8), new DropChance(this.Items["Slime-Sword-Blue"], 0.00004, 1)], "Amidst the boundless horizons of the massive plains, the massive blue slime drifts like a majestic apparition, its ethereal form casting a shimmering glow across the landscape. Unlike its smaller counterparts, this colossal creature exudes an aura of serenity, inviting travelers to approach with cautious curiosity. Yet, beneath its tranquil exterior lies a formidable adversary, capable of enveloping even the most seasoned adventurers in its watery embrace."),
+            "Slime-Red-Massive" :new Monster("Monster_Slime_Massive_Red", "Massive Red Slime", 900, 15, [ new DropChance(this.Items["Slime-Red"], 0.18, 4), new DropChance(this.Items["Slime-Sword-Red"], 0.00004, 1)], "Rare and fearsome, the massive red slime prowls the vast expanses of the massive plains, its fiery presence casting a crimson glow over the land. Towering over the landscape like a living inferno, it leaves a trail of scorching devastation in its wake, its immense size and ferocious demeanor striking fear into the hearts of all who encounter it. To face this colossal creature is to confront the very essence of primal fury and elemental chaos."),
 
-            "Plant-Flower-Murderous" :new Monster("Monster_Flower_Murderous", "Murderous Flower", 5000, 20, [new DropChance(this.Items["Slime-Green"], 0.2, 2), new DropChance(this.Items["Slime-Yellow"], 0.2, 2), new DropChance(this.Items["Slime-Blue"], 0.2, 2), new DropChance(this.Items["Slime-Red"], 0.2, 2), new DropChance(this.Items["Aura"], 0.01, 1), new DropChance(this.Items["Slime-Sword-Green"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Yellow"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Blue"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Red"], 0.00001, 1)], "This carnivorous plant species, often found lurking near forest entrances and within forest meadows, bears a striking resemblance to a large sunflower. Despite its innocent appearance, it harbors a deadly threat, equipped with razor-sharp teeth capable of consuming prey, including humans. Caution is advised when navigating forested areas inhabited by these predatory flora."),
-            "Goblin-Villager" :new Monster("Monster_Goblin_Villager", "Goblin Villager", 7000, 20, [ new DropChance(this.Items["Bone"], 0.1, 1), new DropChance(this.Items["Rock"], 0.01, 3), new DropChance(this.Items["Copper"], 0.001, 2), new DropChance(this.Items["Iron"], 0.0001, 1)], "Found within secluded forest settlements or hidden underground caverns, the Goblin Villager is a member of the goblin race. Despite their smaller stature compared to their warrior brethren, they exhibit hostility towards outsiders, making encounters with them potentially dangerous."),
-            "Goblin-Scout" :new Monster("Monster_Goblin_Scout", "Goblin Scout", 12000, 20, [ new DropChance(this.Items["Bone"], 0.1, 1), new DropChance(this.Items["Copper"], 0.01, 3), new DropChance(this.Items["Iron"], 0.001, 2), new DropChance(this.Items["Silver"], 0.0001, 1)], "Goblin Scouts, commonly encountered patrolling the outskirts of goblin territories or lurking in dense forests, serve as the eyes and ears of their warlike kin. Agile and cunning, they are skilled at detecting intruders and reporting back to their tribes. Armed with crude weapons and always on the lookout for potential threats, encounters with Goblin Scouts are typically met with aggression and hostility."),
-            "Goblin-Warrior" :new Monster("Monster_Goblin_Warrior", "Goblin Warrior", 20000, 25, [ new DropChance(this.Items["Bone"], 0.1, 2), new DropChance(this.Items["Copper"], 0.02, 4), new DropChance(this.Items["Iron"], 0.003, 3), new DropChance(this.Items["Silver"], 0.0003, 2)], "Goblin Warriors, stalwart members of goblin tribes, are often encountered guarding their territories or raiding nearby settlements. Armed with crude weapons and fueled by their aggressive nature, they pose a significant threat to travelers and adventurers alike. Fearless in battle and fiercely loyal to their tribe, Goblin Warriors will stop at nothing to defend their territory and uphold their dominance in the region."),
-            "Goblin-Guard" :new Monster("Monster_Goblin_Guard", "Goblin Guard", 50000, 30, [ new DropChance(this.Items["Bone"], 0.1, 2), new DropChance(this.Items["Iron"], 0.01, 3), new DropChance(this.Items["Silver"], 0.001, 2), new DropChance(this.Items["Jade"], 0.0001, 1)], "Goblin Guards, stationed at key points within goblin strongholds or patrolling the perimeter of their territories, are formidable sentinels tasked with maintaining order and security. Armed with crude yet effective weaponry and armored in scavenged materials, they stand ready to repel intruders and defend their kin at all costs. Hostile and vigilant, encounters with Goblin Guards often result in swift and aggressive confrontations."),
-            "Goblin-Knight" :new Monster("Monster_Goblin_Knight", "Goblin Knight", 100000, 35, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.05, 5), new DropChance(this.Items["Silver"], 0.01, 3), new DropChance(this.Items["Jade"], 0.001, 2)], "Goblin Knights, elite warriors among goblin tribes, are distinguished by their superior combat skills and formidable armor. Clad in makeshift plate mail and wielding crude but deadly weapons, they serve as champions of their kin, leading charges into battle and defending their territory with unwavering ferocity. Encounters with Goblin Knights are rare but perilous, as these skilled fighters pose a significant threat to even the most seasoned adventurers."),
-            "Goblin-Knight-Royal" :new Monster("Monster_Goblin_RoyalKnight", "Royal Goblin Knight", 500000, 40, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.1, 7), new DropChance(this.Items["Silver"], 0.05, 5), new DropChance(this.Items["Jade"], 0.00015, 2)], "Goblin Royal Knights, revered champions of goblin society, are elite warriors handpicked by goblin lords to serve as their personal guards and enforcers. Clad in ornate armor adorned with symbols of their tribe's authority, they wield weapons of superior craftsmanship and are skilled in both offense and defense. Encounters with Goblin Royal Knights are rare and highly dangerous, as they are fiercely loyal to their leaders and will stop at nothing to protect them and their realm."),
-            "Goblin-King" :new Monster("Monster_Goblin_King", "Goblin King", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 4), new DropChance(this.Items["Echo-Stone"], 0.05, 3)], "Goblin King, the epitome of sloth and indulgence, reigns over his domain with a lazy but iron fist. Residing within the opulent chambers of his underground palace, adorned with stolen riches and trinkets, he is the embodiment of gluttony and excess. Despite his corpulent frame and lack of physical prowess, he wields immense authority over his subjects, ruling through intimidation and manipulation rather than strength.\n\nSurrounded by a retinue of sycophantic advisors and lackeys, the Goblin King spends his days feasting on lavish banquets and indulging in idle pleasures, while his kingdom teeters on the brink of collapse. Despite his inherent laziness, he is not to be underestimated, as his cunning mind and ruthless ambition allow him to maintain control over his realm with ruthless efficiency.\n\nEncounters with the Goblin King are rare and fraught with danger, as his insatiable greed and lust for power drive him to eliminate any threats to his rule, be they real or imagined. Those who dare to challenge his authority must be prepared to face not only his formidable guards and minions but also his cunning intellect and Machiavellian schemes."),
-            "Goblin-Queen" :new Monster("Monster_Goblin_Queen", "Goblin Queen", 1000000, 50, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Echo-Stone"], 0.05, 3)], "Goblin Queen, a figure of cunning and ambition, presides over her domain with a regal grace tempered by ruthless pragmatism. Though not as ostentatious as her male counterpart, she commands respect and fear among her subjects through a combination of intelligence, charisma, and sheer force of will.\n            Residing within the heart of her labyrinthine fortress, she holds court with a steady hand, navigating the complex web of goblin politics and alliances with ease. Unlike the Goblin King, she eschews the trappings of excess and indulgence, preferring instead to focus her energies on maintaining the stability and prosperity of her realm.\n\n            Despite her outward appearance of composure, the Goblin Queen is not to be underestimated. Beneath her calm demeanor lies a keen mind and a fierce determination to protect her people and secure her power. Encounters with her are rare and fraught with peril, as she is not afraid to employ any means necessary to ensure the continued survival and dominance of her kingdom."),
+            "Plant-Flower-Murderous" :new Monster("Monster_Flower_Murderous", "Murderous Flower", 1200, 20, [new DropChance(this.Items["Slime-Green"], 0.2, 2), new DropChance(this.Items["Slime-Yellow"], 0.2, 2), new DropChance(this.Items["Slime-Blue"], 0.2, 2), new DropChance(this.Items["Slime-Red"], 0.2, 2), new DropChance(this.Items["Aura"], 0.01, 1), new DropChance(this.Items["Slime-Sword-Green"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Yellow"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Blue"], 0.00001, 1), new DropChance(this.Items["Slime-Sword-Red"], 0.00001, 1)], "This carnivorous plant species, often found lurking near forest entrances and within forest meadows, bears a striking resemblance to a large sunflower. Despite its innocent appearance, it harbors a deadly threat, equipped with razor-sharp teeth capable of consuming prey, including humans. Caution is advised when navigating forested areas inhabited by these predatory flora."),
+            "Goblin-Villager" :new Monster("Monster_Goblin_Villager", "Goblin Villager", 1500, 20, [ new DropChance(this.Items["Bone"], 0.1, 1), new DropChance(this.Items["Rock"], 0.01, 3), new DropChance(this.Items["Copper"], 0.001, 2), new DropChance(this.Items["Iron"], 0.0001, 1)], "Found within secluded forest settlements or hidden underground caverns, the Goblin Villager is a member of the goblin race. Despite their smaller stature compared to their warrior brethren, they exhibit hostility towards outsiders, making encounters with them potentially dangerous."),
+            "Goblin-Scout" :new Monster("Monster_Goblin_Scout", "Goblin Scout", 1800, 20, [ new DropChance(this.Items["Bone"], 0.1, 1), new DropChance(this.Items["Copper"], 0.01, 3), new DropChance(this.Items["Iron"], 0.001, 2), new DropChance(this.Items["Silver"], 0.0001, 1)], "Goblin Scouts, commonly encountered patrolling the outskirts of goblin territories or lurking in dense forests, serve as the eyes and ears of their warlike kin. Agile and cunning, they are skilled at detecting intruders and reporting back to their tribes. Armed with crude weapons and always on the lookout for potential threats, encounters with Goblin Scouts are typically met with aggression and hostility."),
+            "Goblin-Warrior" :new Monster("Monster_Goblin_Warrior", "Goblin Warrior", 2500, 25, [ new DropChance(this.Items["Bone"], 0.1, 2), new DropChance(this.Items["Copper"], 0.02, 4), new DropChance(this.Items["Iron"], 0.003, 3), new DropChance(this.Items["Silver"], 0.0003, 2)], "Goblin Warriors, stalwart members of goblin tribes, are often encountered guarding their territories or raiding nearby settlements. Armed with crude weapons and fueled by their aggressive nature, they pose a significant threat to travelers and adventurers alike. Fearless in battle and fiercely loyal to their tribe, Goblin Warriors will stop at nothing to defend their territory and uphold their dominance in the region."),
+            "Goblin-Guard" :new Monster("Monster_Goblin_Guard", "Goblin Guard", 3000, 30, [ new DropChance(this.Items["Bone"], 0.1, 2), new DropChance(this.Items["Iron"], 0.01, 3), new DropChance(this.Items["Silver"], 0.001, 2), new DropChance(this.Items["Jade"], 0.0001, 1)], "Goblin Guards, stationed at key points within goblin strongholds or patrolling the perimeter of their territories, are formidable sentinels tasked with maintaining order and security. Armed with crude yet effective weaponry and armored in scavenged materials, they stand ready to repel intruders and defend their kin at all costs. Hostile and vigilant, encounters with Goblin Guards often result in swift and aggressive confrontations."),
+            "Goblin-Knight" :new Monster("Monster_Goblin_Knight", "Goblin Knight", 4000, 35, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.05, 5), new DropChance(this.Items["Silver"], 0.01, 3), new DropChance(this.Items["Jade"], 0.001, 2)], "Goblin Knights, elite warriors among goblin tribes, are distinguished by their superior combat skills and formidable armor. Clad in makeshift plate mail and wielding crude but deadly weapons, they serve as champions of their kin, leading charges into battle and defending their territory with unwavering ferocity. Encounters with Goblin Knights are rare but perilous, as these skilled fighters pose a significant threat to even the most seasoned adventurers."),
+            "Goblin-Knight-Royal" :new Monster("Monster_Goblin_RoyalKnight", "Royal Goblin Knight", 5000, 40, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Iron"], 0.1, 7), new DropChance(this.Items["Silver"], 0.05, 5), new DropChance(this.Items["Jade"], 0.00015, 2)], "Goblin Royal Knights, revered champions of goblin society, are elite warriors handpicked by goblin lords to serve as their personal guards and enforcers. Clad in ornate armor adorned with symbols of their tribe's authority, they wield weapons of superior craftsmanship and are skilled in both offense and defense. Encounters with Goblin Royal Knights are rare and highly dangerous, as they are fiercely loyal to their leaders and will stop at nothing to protect them and their realm."),
+            "Goblin-King" :new Monster("Monster_Goblin_King", "Goblin King", 10000, 50, [ new DropChance(this.Items["Bone"], 0.1, 4), new DropChance(this.Items["Echo-Stone"], 0.05, 3)], "Goblin King, the epitome of sloth and indulgence, reigns over his domain with a lazy but iron fist. Residing within the opulent chambers of his underground palace, adorned with stolen riches and trinkets, he is the embodiment of gluttony and excess. Despite his corpulent frame and lack of physical prowess, he wields immense authority over his subjects, ruling through intimidation and manipulation rather than strength.\n\nSurrounded by a retinue of sycophantic advisors and lackeys, the Goblin King spends his days feasting on lavish banquets and indulging in idle pleasures, while his kingdom teeters on the brink of collapse. Despite his inherent laziness, he is not to be underestimated, as his cunning mind and ruthless ambition allow him to maintain control over his realm with ruthless efficiency.\n\nEncounters with the Goblin King are rare and fraught with danger, as his insatiable greed and lust for power drive him to eliminate any threats to his rule, be they real or imagined. Those who dare to challenge his authority must be prepared to face not only his formidable guards and minions but also his cunning intellect and Machiavellian schemes."),
+            "Goblin-Queen" :new Monster("Monster_Goblin_Queen", "Goblin Queen", 10000, 50, [ new DropChance(this.Items["Bone"], 0.1, 3), new DropChance(this.Items["Echo-Stone"], 0.05, 3)], "Goblin Queen, a figure of cunning and ambition, presides over her domain with a regal grace tempered by ruthless pragmatism. Though not as ostentatious as her male counterpart, she commands respect and fear among her subjects through a combination of intelligence, charisma, and sheer force of will.\n            Residing within the heart of her labyrinthine fortress, she holds court with a steady hand, navigating the complex web of goblin politics and alliances with ease. Unlike the Goblin King, she eschews the trappings of excess and indulgence, preferring instead to focus her energies on maintaining the stability and prosperity of her realm.\n\n            Despite her outward appearance of composure, the Goblin Queen is not to be underestimated. Beneath her calm demeanor lies a keen mind and a fierce determination to protect her people and secure her power. Encounters with her are rare and fraught with peril, as she is not afraid to employ any means necessary to ensure the continued survival and dominance of her kingdom."),
         }
         console.log("Game: Monster Data Set")
 
@@ -213,22 +217,29 @@ class Game {
             new Area("Icon_Area_Plains_Medium", "Medium Plains", [[this.Monsters["Slime-Green"], 0.25], [this.Monsters["Slime-Yellow"], 0.25], [this.Monsters["Slime-Blue"], 0.25], [this.Monsters["Slime-Red"], 0.25]]),
             new Area("Icon_Area_Plains_Large", "Large Plains", [[this.Monsters["Slime-Green-Large"], 0.25], [this.Monsters["Slime-Yellow-Large"], 0.25], [this.Monsters["Slime-Blue-Large"], 0.25], [this.Monsters["Slime-Red-Large"], 0.25]]),
             new Area("Icon_Area_Plains_Massive", "Massive Plains", [[this.Monsters["Slime-Green-Massive"], 0.25], [this.Monsters["Slime-Yellow-Massive"], 0.25], [this.Monsters["Slime-Blue-Massive"], 0.25], [this.Monsters["Slime-Red-Massive"], 0.25]]),
-            new Area("Icon_Area_Forrest_Entrance", "Forrest Entrance", [[this.Monsters["Plant-Flower-Murderous"], 0.66],[this.Monsters["Goblin-Villager"], 0.20],[this.Monsters["Goblin-Scout"], 0.12]]),
-            new Area("Icon_Area_Forrest_Entrance", "Forrest Meadows", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Plant-Flower-Murderous"], 0.33]]),
-            new Area("Icon_Area_Forrest_Entrance", "Forrest Path", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Goblin-Warrior"], 0.33]]),
-            new Area("Icon_Area_Forrest_Entrance", "Goblin Fortress Entrance", [[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Goblin-Warrior"], 0.33],[this.Monsters["Goblin-Guard"], 0.33]]),
-            new Area("Icon_Area_Forrest_Entrance", "Goblin Fortress City", [[this.Monsters["Goblin-Warrior"], 0.33],[this.Monsters["Goblin-Guard"], 0.33],[this.Monsters["Goblin-Knight"], 0.33]]),
-            new Area("Icon_Area_Forrest_Entrance", "Goblin Fortress Tower", [[this.Monsters["Goblin-Guard"], 0.33],[this.Monsters["Goblin-Knight"], 0.33],[this.Monsters["Goblin-Knight-Royal"], 0.33]]),
-            new Area("Icon_Area_Forrest_Entrance", "Goblin Fortress Throne Room", [[this.Monsters["Goblin-King"], 0.5],[this.Monsters["Goblin-Queen"], 0.5]]),
+            new Area("Icon_Area_Forest_Entrance", "Forest Entrance", [[this.Monsters["Plant-Flower-Murderous"], 0.66],[this.Monsters["Goblin-Villager"], 0.20],[this.Monsters["Goblin-Scout"], 0.12]]),
+            new Area("Icon_Area_Forest_Entrance", "Forest Meadows", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Plant-Flower-Murderous"], 0.33]]),
+            new Area("Icon_Area_Forest_Entrance", "Forest Path", [[this.Monsters["Goblin-Villager"], 0.33],[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Goblin-Warrior"], 0.33]]),
+            new Area("Icon_Area_Forest_Entrance", "Goblin Fortress Entrance", [[this.Monsters["Goblin-Scout"], 0.33],[this.Monsters["Goblin-Warrior"], 0.33],[this.Monsters["Goblin-Guard"], 0.33]]),
+            new Area("Icon_Area_Forest_Entrance", "Goblin Fortress City", [[this.Monsters["Goblin-Warrior"], 0.33],[this.Monsters["Goblin-Guard"], 0.33],[this.Monsters["Goblin-Knight"], 0.33]]),
+            new Area("Icon_Area_Forest_Entrance", "Goblin Fortress Tower", [[this.Monsters["Goblin-Guard"], 0.33],[this.Monsters["Goblin-Knight"], 0.33],[this.Monsters["Goblin-Knight-Royal"], 0.33]]),
+            new Area("Icon_Area_Forest_Entrance", "Goblin Fortress Throne Room", [[this.Monsters["Goblin-King"], 0.5],[this.Monsters["Goblin-Queen"], 0.5]]),
         ]
         console.log("Game: Area Data Set")
 
         this.Quests = [
             new QuestLine("Small Slime Hunting", [
                     new Quest("Small Slime Hunt I", "Residents report an increase in small slime sightings near the town. Investigate and eliminate the threat to ensure the safety of the townsfolk.", "{\"slain\":[[\"Slime-Green-Small\", 100],[\"Slime-Yellow-Small\", 100],[\"Slime-Red-Small\", 100],[\"Slime-Blue-Small\", 100]],\"reward\":{\"xp\" : 1000,\"items\" : [[\"Rock\", 6]]}}"),
-                    new Quest("Small Slime Hunt II", "Reports confirm a hidden slime den as the source of the infestation. Your mission is to locate and eliminate the creatures within, ensuring the safety of the town from further slime encroachment.", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Slime-Yellow-Small\", 1000],[\"Slime-Red-Small\", 1000],[\"Slime-Blue-Small\", 1000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
+                    new Quest("Small Slime Hunt II", "The discovery of a goblin village deeper within the forest has escalated the urgency of the situation. Reports indicate the presence of formidable goblin warriors and vigilant guards, suggesting that the goblin threat is more organized and dangerous than initially feared. It is imperative to investigate the goblin stronghold and neutralize the threat before they can launch an attack on the nearby settlements.", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Slime-Yellow-Small\", 1000],[\"Slime-Red-Small\", 1000],[\"Slime-Blue-Small\", 1000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
                     new Quest("Small Slime Hunt III", "Following the eradication of the slime den, reports indicate a hidden chamber harboring a colossal slime nest. Your mission is to venture into the depths, confront the monstrous slime creatures within, and eliminate the threat to the town's safety.", "{\"slain\":[[\"Slime-Green-Small\", 10000],[\"Slime-Yellow-Small\", 10000],[\"Slime-Red-Small\", 10000],[\"Slime-Blue-Small\", 10000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}"),
                     new Quest("Small Slime Hunt IV", "Having cleared the titan slime nest, reports reveal a deeper, more expansive cavern network beneath the town, housing a colossal slime nest. Your task is to navigate the labyrinthine depths, confront the hulking slime guardians, and purge the nest of its monstrous inhabitants to safeguard the town's well-being. Prepare for a perilous journey fraught with danger and uncertainty.", "{\"slain\":[[\"Slime-Green-Small\", 100000],[\"Slime-Yellow-Small\", 100000],[\"Slime-Red-Small\", 100000],[\"Slime-Blue-Small\", 100000]],\"reward\":{\"xp\" : 5000,\"items\" : [[\"Copper\", 6]]}}")
+                ]
+            ),
+            new QuestLine("Goblin Hunt", [
+                    new Quest("Goblin Hunt I", "Recent reports from scouts have revealed the presence of goblins lurking within the depths of the forest, posing a potential threat to nearby communities. The discovery has stirred fear among the villagers, who fear an imminent attack. As tensions rise, urgent action is needed to assess the goblin threat and eliminate any immediate danger they may pose.", "{\"slain\":[[\"Goblin-Villager\", 15],[\"Goblin-Scout\", 10]],\"reward\":{\"xp\" : 20000,\"items\" : [[\"Iron\", 3]]}}"),
+                    new Quest("Goblin Hunt II", "Reports confirm a hidden slime den as the source of the infestation. Your mission is to locate and eliminate the creatures within, ensuring the safety of the town from further slime encroachment.", "{\"slain\":[[\"Slime-Green-Small\", 1000],[\"Goblin-Warrior\", 35],[\"Goblin-Guard\", 25]],\"reward\":{\"xp\" : 50000,\"items\" : [[\"Silver\", 3]]}}"),
+                    new Quest("Goblin Hunt III", "Recent reconnaissance efforts have unveiled the existence of a formidable goblin fortress deep within the heart of the forest. Reports indicate the presence of elite Goblin Knights and Royal Knights within its walls, signifying a significant escalation in the goblin threat. With the safety of the nearby settlements hanging in the balance, it is imperative to infiltrate the goblin fortress, confront their elite forces, and dismantle their stronghold before they can launch a devastating assault.", "{\"slain\":[[\"Goblin-Knight\", 50],[\"Goblin-Knight-Royal\", 40],[\"Slime-Red-Small\", 10000]],\"reward\":{\"xp\" : 125000,\"items\" : [[\"Jade\", 3]]}}"),
+                    new Quest("Goblin Hunt IV", "The revelation of a Goblin King and Goblin Queen ruling over the goblin forces from their throne room within the fortress has sent shockwaves throughout the land. Their tyrannical rule threatens the stability of the entire region, and their command over the goblin armies poses an existential threat to all nearby settlements. The time has come to end their reign of terror once and for all by infiltrating their throne room, confronting the Goblin King and Queen, and bringing about the downfall of their oppressive monarchy.", "{\"slain\":[[\"Goblin-King\", 1],[\"Goblin-Queen\", 1]],\"reward\":{\"xp\" : 2000000,\"items\" : [[\"Gold\", 3]]}}")
                 ]
             ),
             new QuestLine("Sword Master", [
@@ -268,7 +279,7 @@ class Game {
         this.inventory = null;
         console.log("Game: Inventory Set")
 
-        this.CategoryNames = ["All", "Materials", "Weaponry", "Alchemy"]
+        this.CategoryNames = ["All", "Materials", "Weaponry", "Alchemy", "Alphabetical"]
         this.genCraftingMenu(this.CategoryNames[0])
         this.nextCategory();
 
@@ -279,6 +290,82 @@ class Game {
         console.log("Game: Initialized Game Data")
 
         this.genBestiary();
+
+        this.obtainedAchievements = [];
+        this.Achievements = [
+            new Achievement("Rank FFF Quester", "Complete every quest in at least one questline", () => {
+                const questCount = this.Quests.length;
+                for (let i = 0; i < questCount; i++) {
+                    const questLine = this.Quests[i];
+                    if (questLine.currentQuest == questLine.quests.length) {
+                        return true;
+                    }
+                }
+            }),
+            new Achievement("Rank FF Quester", "Complete every quest in at least 5 questline", () => {
+                const questCount = this.Quests.length;
+                let count = 0;
+                for (let i = 0; i < questCount; i++) {
+                    const questLine = this.Quests[i];
+                    if (questLine.currentQuest == questLine.quests.length) {
+                        count++;
+                    }
+                }
+                if (count >= 3) {
+                    return true;
+                }
+            }),
+            new Achievement("Rank F Quester", "Complete every quest in at least 5 questline", () => {
+                const questCount = this.Quests.length;
+                let count = 0;
+                for (let i = 0; i < questCount; i++) {
+                    const questLine = this.Quests[i];
+                    if (questLine.currentQuest == questLine.quests.length) {
+                        count++;
+                    }
+                }
+                if (count >= 5) {
+                    return true;
+                }
+            }),
+            new Achievement("Weapon Collector: Generic", "Have one of every standard non-metal weapon in the game (This excludes: Slime Sword II to True Slime Sword)",  () => {
+                if (this.inventory != null) {
+                    return this.inventory.hasItems([["Stick",1], ["Wooden Sword",1], ["Green Slime Sword",1], ["Yellow Slime Sword",1], ["Blue Slime Sword",1], ["Red Slime Sword",1], ["Slime Sword",1], ["Bone Sword",1], ["Stone  Sword",1], ["Grass Sword",1]]);
+                }
+            }),
+            new Achievement("Weapon Collector: Metallic", "Have one of every standard metal / jewel weapon in the game",  () => {
+                if (this.inventory != null) {
+                    return this.inventory.hasItems([["Copper Sword",1], ["Iron Sword",1], ["Silver Sword",1], ["Jade Sword",1], ["Gold Sword",1]]);
+                }
+            }),
+            new Achievement("Weapon Collector: Hoarder", "Have one of every standard weapon in the game (This excludes: Slime Sword II to True Slime Sword)",  () => {
+                if (this.inventory != null) {
+                    return this.inventory.hasItems([["Stick",1], ["Wooden Sword",1], ["Green Slime Sword",1], ["Yellow Slime Sword",1], ["Blue Slime Sword",1], ["Red Slime Sword",1], ["Slime Sword",1], ["Bone Sword",1], ["Stone  Sword",1], ["Grass Sword",1], ["Copper Sword",1], ["Iron Sword",1], ["Silver Sword",1], ["Jade Sword",1], ["Gold Sword",1]]);
+                }
+            }),
+            new Achievement("The Slimer", "Obtain the Slime Sword",  () => {
+                if (this.inventory != null) {
+                    if (this.inventory.hasItem("Slime Sword")) {
+                        return true;
+                    }
+                }
+            }),
+            new Achievement("The True Slimer", "Obtain the True Slime Sword",  () => {
+                if (this.inventory != null) {
+                    if (this.inventory.hasItem("True Slime Sword")) {
+                        return true;
+                    }
+                }
+            }),
+            new Achievement("Goblin Slayer", "Defeat the Goblin King and Queen",  () => {
+                if (this.Monsters != null) {
+                    if (this.Monsters["Goblin-King"].deaths > 0 && this.Monsters["Goblin-Queen"].deaths > 0) {
+                        return true;
+                    }
+                }
+            }),
+        ];
+        this.updateAchievements();
     }
     
     nextCategory() {
@@ -319,6 +406,15 @@ class Game {
 
     newMonster() {
         this.currentMonster = this.getNewMonster();
+        if (this.currentMonster) {
+            if (this.currentMonster.def > this.playerLevel) {
+                createNotification(`You are too weak for this area.\nRequired Level: ${this.currentMonster.def}\nYour Level: ${this.playerLevel}`);
+                this.previousArea();
+                return;
+            }
+            this.currentMonster = this.getNewMonster();
+            return;
+        }
     }
 
     getNewMonster() {
@@ -337,17 +433,15 @@ class Game {
     }
 
     attackMonster() {
-        game.currentMonster.hp -= game.strength;
+        this.totalAttacks++;
+        let def = game.currentMonster.def >= 1 ? Math.max(((game.currentMonster.def / 5) * (1 - (this.playerLevel / (2 * game.currentMonster.def)))), 1) : 1;
+        game.currentMonster.hp -= game.strength / def;
         
         if (game.currentMonster.hp <= 0) {
-            Object.entries(this.Monsters).forEach(([id, monster]) => {
-                if (monster.name == this.currentMonster.name) {
-                    monster.deaths++;
-                }
-            });
+            this.monstersDefeated++;
 
             const items = game.currentMonster.getDrops(game.dcm);
-            const xp = Math.ceil(Math.log10((items.length + 1) * game.currentMonster.maxHp) * (1 + game.currentMonster.def))
+            const xp = Math.ceil(Math.log10((items.length + 1) * game.currentMonster.maxHp) * (1 + game.currentMonster.def)) * this.xpm;
             this.inventory.addItems(items);
             this.gainXP(xp);
 
@@ -357,6 +451,12 @@ class Game {
                 itemsText += `+${item.name}\n`
             })
             
+            Object.entries(this.Monsters).forEach(([id, monster]) => {
+                if (monster.name == this.currentMonster.name) {
+                    monster.deaths++;
+                    monster.xp += xp;
+                }
+            });
             createPopup(`+${Math.ceil(xp)}xp\n${itemsText}`)
             
             game.newMonster()
@@ -365,7 +465,7 @@ class Game {
 
     genBestiary() {
         Object.entries(this.Monsters).forEach(([MonsterID, Monster]) => {
-            this.genBeast(Monster.sprite, Monster.name, MonsterID, Monster.description, {"HP": Monster.maxHp, "DEF": Monster.def, "Deaths": Monster.deaths, "DROPS": Monster.drops})
+            this.genBeast(Monster.sprite, Monster.name, MonsterID, Monster.description, {"HP": Monster.maxHp, "DEF": Monster.def, "Deaths": Monster.deaths, "XP": Monster.xp, "DROPS": Monster.drops})
             console.log(Monster.deaths)
         })
     }
@@ -377,7 +477,7 @@ class Game {
         container.classList.add("BeastContainer")
 
         const img = document.createElement("img");
-        img.src = getImageURL(icon);
+        img.src = (stats["Deaths"] > 0) ? getImageURL(icon) : getImageURL("default");
 
         container.appendChild(img);
         list.appendChild(container);
@@ -390,11 +490,11 @@ class Game {
             const _deaths =  document.getElementById("BestiaryDeaths");
             const _dropsList =  document.getElementById("BestiaryDrops");
 
-            _name.innerText = name;
-            _desc.innerText = "[" + id + "]\n\n" + desc
-            _hp.innerText = stats["HP"];
-            _def.innerText = stats["DEF"];
-            _deaths.innerText = stats["Deaths"];
+            _name.innerText = (stats["Deaths"] >= 33) ? name : "?????";
+            _desc.innerText = (stats["Deaths"] >= 66) ? ("[" + id + "]\n\n" + desc) : "???????"
+            _hp.innerText = (stats["Deaths"] >= 10) ? stats["HP"] : "???";
+            _def.innerText = (stats["Deaths"] >= 2) ? stats["DEF"] : "???";
+            _deaths.innerText = stats["Deaths"] + ` (${stats["XP"]}xp)`;
 
             _dropsList.innerHTML = "";
             
@@ -433,6 +533,24 @@ class Game {
                 }
                 this.CreateRecipe([recipeName, recipeItems]);
             });
+        } else if (Category == "Alphabetical") {
+            const sortedRecipes = Object.keys(this.Recipes).sort((a, b) => {
+                const nameA = this.Items[a].name.toUpperCase();
+                const nameB = this.Items[b].name.toUpperCase();
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            sortedRecipes.forEach(recipeName => {
+                if (this.Items[recipeName] == undefined) {
+                    return;
+                }
+                this.CreateRecipe([recipeName, this.Recipes[recipeName]]);
+            });
         } else if(this.Catagories[Category] != undefined) {
             this.Catagories[Category].forEach(recipeName => {
                 if (this.Items[recipeName] == undefined) {
@@ -453,14 +571,18 @@ class Game {
     CreateRecipe([recipeName, recipeItems]) {
         const list = document.getElementsByClassName("CraftingList")[0];
         const container = document.createElement("a");
+        let _count = parseInt(document.getElementById("bulkCraft").value);
+        if (isNaN(_count)) {
+            _count = 1;
+        }
         container.classList.add("Craft");
         container.onclick = () => {
             const recipe = recipeItems.map(innerArray => {
                 const [object, count] = innerArray;
-                return [object.name, count];
+                return [object.name, count * _count];
             })
             if (this.inventory.hasAndRemoveItems(recipe)) {
-                this.inventory.addItem(this.Items[recipeName]);
+                this.inventory.addItem(this.Items[recipeName], _count);
                 PlayAudio(chinkAudio);
             }
         };
@@ -487,7 +609,7 @@ class Game {
             try {
                 const name = item[0].name;
                 const quantity = item[1];
-                const formattedItem = `${name} (x${quantity})`;
+                const formattedItem = `${name} (x${quantity * _count})`;
                 if (index % 2 === 1) {
                     formattedList[formattedList.length - 1] += '    - ' + formattedItem;
                 } else {
@@ -499,7 +621,7 @@ class Game {
             }
         });
         
-        const RecipeList = `[${recipeName}]<br>-${formattedList.join('<br>-')}`;
+        const RecipeList = `[${this.Items[recipeName].name + `(x${_count})`}]<br>-${formattedList.join('<br>-')}`;
 
         text.innerHTML = RecipeList;
 
@@ -594,6 +716,51 @@ class Game {
         return rewardString;
     }
 
+    updateAchievements() {
+        const list = document.getElementById("achievementList");
+        list.innerHTML = ""; // Clear previous achievements
+    
+        this.Achievements.forEach(achievement => {
+            const item = document.createElement("div");
+            item.classList.add("achievement");
+            if (achievement.checkCompletion() || this.obtainedAchievements.includes(achievement.title)) {
+                item.classList.add("completed");
+                if (!this.obtainedAchievements.includes(achievement.title)) {
+                    this.obtainedAchievements.push(achievement.title);
+                }
+            }
+            item.innerHTML = `
+                <h2>${achievement.title}</h2>
+            `;
+            document.getElementById("ttip").innerText = achievement.description;
+            item.setAttribute("data-description", achievement.description); // Set description as data attribute
+            item.addEventListener("mouseover", this.showTooltip.bind(this)); // Show tooltip on mouseover
+            item.addEventListener("mouseout", this.hideTooltip.bind(this)); // Hide tooltip on mouseout
+            list.appendChild(item);
+        });
+    }
+    
+    showTooltip(event) {
+        const tooltip = document.getElementById("ttip");
+        tooltip.textContent = event.target.getAttribute("data-description");
+        tooltip.style.display = "block";
+        tooltip.style.left = `${event.clientX}px`;
+        tooltip.style.top = `${event.clientY}px`;
+        document.addEventListener("mousemove", this.updateTooltipPosition);
+    }
+
+    updateTooltipPosition(event) {
+        const tooltip = document.getElementById("ttip");
+        tooltip.style.left = `${event.clientX + 10}px`; // Add 10px offset to prevent overlap
+        tooltip.style.top = `${event.clientY + 10}px`; // Add 10px offset to prevent overlap
+    }
+    
+    hideTooltip() {
+        const tooltip = document.getElementById("ttip");
+        tooltip.style.display = "none";
+        document.removeEventListener("mousemove", this.updateTooltipPosition);
+    }
+
     gainXP(amnt) {
         this.playerXP += amnt;
         this.playerTotalXP += amnt;
@@ -647,6 +814,8 @@ class Game {
         this.strength = Math.sqrt(Math.pow(playerDMG, 2) + Math.pow(((this.inventory.equipped != undefined) ? 1 + weaponDMG : 1), 2));
         this.dcm = 1;
         this.dcm += (attributes["DCM"] == undefined) ? 0 : attributes["DCM"] / 100;
+        this.xpm = 1;
+        this.xpm += (attributes["XPM"] == undefined) ? 0 : attributes["XPM"] / 100;
 
         document.getElementById("PlayerStatsText").innerText = `Strength: ${Math.floor(10 * playerDMG) / 10}\nWeapon Strength: ${Math.floor(weaponDMG)}\nTotal Damage: ${Math.floor(10 * this.strength) / 10}\nDrop Chance Multi: ${Math.floor(10 * this.dcm) / 10}`
     }

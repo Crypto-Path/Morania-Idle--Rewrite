@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Morania Idle v1.0.4b
+            Morania Idle v1.0.5b
         </title>
         <meta http-equiv='cache-control' content='no-cache'> 
         <meta http-equiv='expires' content='0'> 
@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="styles/bars.css">
         <link rel="stylesheet" type="text/css" href="styles/toolTip.css">
         <link rel="stylesheet" type="text/css" href="styles/bestiary.css">
+        <link rel="stylesheet" type="text/css" href="styles/achievements.css">
         <link rel="stylesheet" type="text/css" href="styles/notification.css">
         <link rel="stylesheet" type="text/css" href="styles/changelog.css">
         <link rel="stylesheet" type="text/css" href="styles/lines.css">
@@ -33,6 +34,7 @@
         <script src="modules/Quest.js"></script>
         <script src="modules/QuestLine.js"></script>
         <script src="modules/SaveAndLoad.js"></script>
+        <script src="modules/Achievement.js"></script>
         <script>
             const backgroundMusic = new Audio("Audio/Background.mp3");
             const attackAudio = new Audio("Audio/Attack.mp3");
@@ -117,6 +119,26 @@
                     Change Log
                 </a>
                 <div id="changeLogList" class = "container">
+                    <div  class = "container changeLogItem">
+                        <a style="font-size: 20px;">
+                            v1.0.5
+                        </a>
+                        <p class="changelogDesc">
+                        What's new?
+                        - Improved visuals of the switch are the background for the bars
+                        - Added level requirements for areas
+                        - Items now pop slightly when one gets added to inventory
+                        - New crafting list (Alphabetical)
+                        - Crafting recipes now list the items real name, not it's identifier
+                        - Increased scroll speed when zooming in/out
+                        - Added a few new quests
+                        - Added achievements
+                        - Added new monsters
+                        - New fame stat
+                        - Fixed xp multiplier not working 
+                        - Minor bug fixes
+                        </p>
+                    </div>
                     <div  class = "container changeLogItem">
                         <a style="font-size: 20px;">
                             v1.0.4
@@ -210,8 +232,11 @@
         <div id="body" style="display: none;">
             <div>
                 <div class="container">
-                    <button class="close-btn" style="position: absolute;" onclick="{game.toggleBestiary();}">
+                    <button class="close-btn" style="position: absolute; font-size: 16px;" onclick="{game.toggleBestiary();}">
                         Bestiary
+                    </button>
+                    <button class="close-btn" style="position: absolute; font-size: 16px; margin-top: 18px;" onclick="toggleAchievements()">
+                        Achievements
                     </button>
                     <p>
                         Guild
@@ -274,8 +299,8 @@
                         Production
                     </p>
                     <div class="flexGroup">
-                        <button class="tab-left" onclick="openTab('CraftingMenu','SmeltingMenu')">Crafting</button>
-                        <button class="tab-right" onclick="openTab('SmeltingMenu','CraftingMenu')">Smelting</button>
+                        <button class="tab tab-left" onclick="openTab('CraftingMenu','SmeltingMenu')"><p style="margin: 0; font-weight: normal;">Crafting</p></button>
+                        <button class="tab tab-right" onclick="openTab('SmeltingMenu','CraftingMenu')"><p style="margin: 0; font-weight: normal;">Smelting</p></button>
                     </div>
                     <div id="CraftingMenu">
                         <p id="Catagory">
@@ -286,12 +311,12 @@
                             <button onclick="{game.nextCategory(); PlayAudio(tabAudio)}">></button>
                         </p>
                         <div id="CraftingMenuItemsContainer">
-                            
                             <div class="CraftingList">
                             </div>
                         </div>
+                        <input id="bulkCraft" type="number" value="1" onchange="{if (this.value < 1) {this.value = 1};game.genCraftingMenu(game.currentCategory);}" placeholder="Bulk Craft"/>
                     </div>
-                    <div id="SmeltingMenu" class="container flexGroup Locked">
+                    <div id="SmeltingMenu" style="margin-top: 0px;" class="container flexGroup Locked">
                         <div>
                             <p style="text-align: right; padding: 16px">
                                 Smeltable Item ->
@@ -450,6 +475,8 @@
                         <div id="dropzone" onclick="{game.unequipItem()}" class="item"><div><img id="EquippedSlot" draggable="false" src="Images/Slot_Equipment_Sword.png" /></div></div>
                     </span>
                     <br>
+                    <p>Fame: </p> <p id="fame">0</p>
+                    <br>
                     <div id="XPBarBackground" class="bar background barFlex">
                         <div id="XPBar" class="bar">
                             <div id="XPBar" class="bar">
@@ -485,9 +512,9 @@
                 }
 
                 if (event.deltaY < 0) {
-                    scale += 0.01; 
+                    scale += 0.05; 
                 } else if (event.deltaY > 0) {
-                    scale -= 0.01;
+                    scale -= 0.05;
                 }
                 
                 if (scale > 2)
@@ -507,7 +534,7 @@
                 let parent = element;
             
                 while (parent) {
-                    if (parent.classList.contains('container')) {
+                    if (parent.classList.contains('container') || parent.id == "Bestiary" || parent.id == "achievementPanel") {
                         return true; // Found an ancestor with overflow
                     }
                     parent = parent.parentElement;
@@ -540,6 +567,7 @@
                 game.inventory = new Inventory(document.querySelectorAll('.slotIMG'));
                 game.updateStats();
                 file = new SaveAndLoad(game, StartDate);
+                console.log(game)
 
                 hitBox.addEventListener("click", ()=> {
                     if (!autoAttack) {
@@ -661,7 +689,8 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const data = file.getSaveCoverData();
+                console.log(file)
+                let data = file.getSaveCoverData();
                 console.log(data)
                 document.getElementById("saveDate").innerText = data[0].toLocaleString();
                 document.getElementById("saveStats").innerText = `[${data[2]}] ${data[1]} / ${game.getXpReq(data[2])} (${Math.round(100 * data[1] / game.getXpReq(data[2]))}%)`;
@@ -686,8 +715,26 @@
             <img id="Emblem" title="Cyphe Mercury" onclick="{window.open('https://cyphemercury.online/', '_blank');}"  src="Images/001 - CyphesEmblem.png" width="64"/>
             <img title="Cyphe Games (Discord)" onclick="{window.open('https://discord.com/invite/nhzhtfYYbH', '_blank');}"  src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" width="64"/>
         </div>
+        <script>
+            function toggleAchievements() {
+                const panel = document.getElementById("achievementPopup");
+                panel.classList.toggle("hidden");
+                if (!panel.classList.contains("hidden")) {
+                    game.updateAchievements();
+                }
+            }
+        </script>
+        <div id="achievementsPanel" class="">
+            <div id="achievementPopup" class="achievementPopup hidden">
+                <h1>Achievements</h1>
+                <div id="achievementList" class="container">
+                </div>
+                <button onclick="toggleAchievements()">Close</button>
+            </div>
+        </div>
+        <div id="ttip" style="display: none; position:fixed; background-color: rgba(0, 0, 0, 0.75)">${achievement.description}</div>
         <a class="bottom-right">
-            v1.0.4
+            v1.0.5
         </a>
     </body>
 </html>
